@@ -22,4 +22,14 @@ class CryptoController extends AbstractController
             'cryptos' => $cryptos,
         ]);
     }
+
+    /**
+     * @Route("/details/{slug}", methods={"GET"}, name="crypto_info")
+     */
+    public function cryptoShow(String $slug): Response
+    {
+        return $this->render('crypto/details_show.html.twig', [
+            'slug' => $slug
+        ]);
+    }
 }

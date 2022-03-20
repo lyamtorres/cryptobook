@@ -43,22 +43,17 @@
             </tr>
             </thead>
             <tbody>
+            {% for crypto in cryptos %}
             <tr>
                 <th scope="row">1</th>
-                <td>{{ cryptos[0].nom }}</td>
+                <td>{{ crypto.nom }}</td>
                 <td>Satoshi Nakamoto</td>
-                <td>20 000 000</td>
-                <td>48</td>
+                <td>{{ crypto.quantite }}</td>
+                <td>{{ crypto.nbLikes }}</td>
                 <td>⭐</td>
+                <td><a href="{{ path('crypto_info', {slug: crypto.nom}) }}">Voir plus</a></td>
             </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Ethereum</td>
-                <td>Vitalik Buterin</td>
-                <td>119 700 000</td>
-                <td>63</td>
-                <td>⭐</td>
-            </tr>
+            {% endfor %}
             </tbody>
         </table>
     </div>
