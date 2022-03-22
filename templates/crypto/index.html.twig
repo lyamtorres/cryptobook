@@ -51,7 +51,7 @@
                 <td>{{ crypto.quantite }}</td>
                 <td>{{ crypto.nbLikes }}</td>
                 <td>⭐</td>
-                <td><a href="{{ path('crypto_info', {slug: crypto.nom}) }}">Voir plus</a></td>
+                <td><a href="{{ path('crypto_info', {nom: crypto.nom}) }}">Voir plus</a></td>
             </tr>
             {% endfor %}
             </tbody>
