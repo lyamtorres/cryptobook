@@ -26,12 +26,10 @@ class CryptoController extends AbstractController
     /**
      * @Route("/details/{nom}", methods={"GET"}, name="crypto_info")
      *
-     * affiche les détails d'une cryptomonnaie après avoir cliqué sur l'option 'voir plus'
+     * Affiche les détails d'une cryptomonnaie après avoir cliqué sur l'option 'voir plus'
      */
     public function cryptoShow(Crypto $crypto): Response
     {
-
-
         return $this->render('crypto/details_show.html.twig', [
             'crypto' => $crypto
         ]);
