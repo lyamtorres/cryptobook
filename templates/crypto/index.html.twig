@@ -3,9 +3,8 @@
 {% block title %}Liste de Cryptomonnaies{% endblock %}
 
 {% block body %}
-    <link rel="stylesheet" href="https://bootswatch.com/5/yeti/bootstrap.min.css">
 
-    <div class="container">
+    <div class="example-wrapper">
         <h1>Liste de Cryptomonnaies</h1>
         <table class="table">
             <thead>
@@ -19,20 +18,24 @@
             </tr>
             </thead>
             <tbody>
-            {% for crypto in cryptos %}
             <tr>
                 <th scope="row">1</th>
-                <td>{{ crypto.nom }}</td>
+                <td>{{ cryptos[0].nom }}</td>
                 <td>Satoshi Nakamoto</td>
-                <td>{{ crypto.quantite }}</td>
-                <td>{{ crypto.nbLikes }}</td>
+                <td>20 000 000</td>
+                <td>48</td>
                 <td>⭐</td>
-                <td><a href="{{ path('crypto_info', {nom: crypto.nom}) }}">Voir plus</a></td>
             </tr>
-            {% endfor %}
+            <tr>
+                <th scope="row">2</th>
+                <td>Ethereum</td>
+                <td>Vitalik Buterin</td>
+                <td>119 700 000</td>
+                <td>63</td>
+                <td>⭐</td>
+            </tr>
             </tbody>
         </table>
     </div>
+
 {% endblock %}
-
-
