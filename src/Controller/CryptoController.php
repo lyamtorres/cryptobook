@@ -10,7 +10,13 @@ use Symfony\Component\Routing\Annotation\Route;
 class CryptoController extends AbstractController
 {
     /**
-     * @Route("/crypto", name="app_crypto")
+     * @Route(
+     *     "/{_locale}/crypto",
+     *     name="app_crypto",
+     *     requirements={
+     *         "_locale": "en|fr",
+     *     }
+     * )
      */
     public function index(): Response
     {
@@ -24,10 +30,17 @@ class CryptoController extends AbstractController
     }
 
     /**
-     * @Route("/details/{nom}", methods={"GET"}, name="crypto_info")
+     * @Route(
+     *     "/{_locale}/details/{nom}",
+     *     name="crypto_info",
+     *     requirements={
+     *         "_locale": "en|fr",
+     *     }
+     * )
      *
-     * Affiche les détails d'une cryptomonnaie après avoir cliqué sur l'option 'voir plus'
+     * * Affiche les détails d'une cryptomonnaie après avoir cliqué sur l'option 'voir plus'
      */
+
     public function cryptoShow(Crypto $crypto): Response
     {
         return $this->render('crypto/details_show.html.twig', [
