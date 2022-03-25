@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
+use App\Entity\User;
 use App\Repository\CryptoRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CryptoRepository::class)
@@ -43,7 +47,8 @@ class Crypto
     private $quantite;
 
     /**
-     * @ORM\Column(type="date")
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
     private $date;
 
@@ -51,6 +56,22 @@ class Crypto
      * @ORM\Column(type="integer", nullable=true)
      */
     private $nbLikes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="cryptos")
+     */
+    private $createur;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="cryptosFavoris")
+     */
+    private $fans;
+
+    public function __construct()
+    {
+        $this->fans = new ArrayCollection();
+        $this->date = new \DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -139,5 +160,46 @@ class Crypto
         $this->nbLikes = $nbLikes;
 
         return $this;
+    }
+
+    public function getCreateur(): ?User
+    {
+        return $this->createur;
+    }
+
+    public function setCreateur(?User $createur): self
+    {
+        $this->createur = $createur;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getFans(): Collection
+    {
+        return $this->fans;
+    }
+
+    public function addFan(User $fan): self
+    {
+        if (!$this->fans->contains($fan)) {
+            $this->fans[] = $fan;
+        }
+
+        return $this;
+    }
+
+    public function removeFan(User $fan): self
+    {
+        $this->fans->removeElement($fan);
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getCreateur();
     }
 }

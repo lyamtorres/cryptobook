@@ -27,6 +27,23 @@
                 </ul>
             </div>
 
+            {% if app.user %}
+                <div>
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('new_crypto') }}">Ajouter_une_crypto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_my_crypto') }}">Mes_cryptos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            {% else %}
                 <div>
                     <div class="collapse navbar-collapse" id="navbarColor01">
                         <ul class="navbar-nav me-auto">
@@ -39,7 +56,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            {% endif %}
         </nav>
         <div class="container">
             {% block body %}{% endblock %}
