@@ -27,7 +27,7 @@
                     <div class="collapse navbar-collapse" id="navbarColor01">
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ path('app_crypto') }}">Accueil
+                                <a class="nav-link active" href="{{ path('app_crypto') }}">{{'home'|trans}}
                                     <span class="visually-hidden">(current)</span>
                                 </a>
                             </li>
@@ -45,7 +45,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">Languages</a>
+                                    <a class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">{{'languages'|trans}}</a>
                                     <div class="dropdown-menu show" data-bs-popper="none">
                                         <ul>
                                             {% for key, locale in locales %}
@@ -56,10 +56,10 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">{{'inscription'|trans}}</a>
+                                    <a class="nav-link" href="#">{{'registration'|trans}}</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">{{'connexion'|trans}}</a>
+                                    <a class="nav-link" href="#">{{'login'|trans}}</a>
                                 </li>
                             </ul>
                         </div>
@@ -76,7 +76,7 @@
             <div class="container">
                 <div class="row">
                     <div id="footer-copyright" class="col-md-6">
-                        <p>@Copyright 2022</p>
+                        <p>© 2020 Cryptobook</p>
                     </div>
                     <div id="footer-resources" class="col-md-6">
                     </div>

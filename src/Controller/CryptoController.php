@@ -14,7 +14,7 @@ class CryptoController extends AbstractController
      *     "/{_locale}/crypto",
      *     name="app_crypto",
      *     requirements={
-     *         "_locale": "en|fr",
+     *         "_locale": "en|es|fr",
      *     }
      * )
      */
@@ -34,7 +34,7 @@ class CryptoController extends AbstractController
      *     "/{_locale}/details/{nom}",
      *     name="crypto_info",
      *     requirements={
-     *         "_locale": "en|fr",
+     *         "_locale": "en|es|fr",
      *     }
      * )
      *

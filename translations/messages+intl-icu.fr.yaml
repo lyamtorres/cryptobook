@@ -1,2 +1,15 @@
-inscription: Inscription
-connexion: Connexion
+home: Accueil
+languages: Langues
+registration: Inscription
+login: Connexion
+crypto.symbol: Symbole
+crypto.price: Prix
+crypto.category: Categorie
+crypto.quantity: Quantité
+crypto.date: Date
+crypto.likes: J'aime
+crypto.list: Liste de cryptomonnaies
+crypto.name: Nom
+crypto.creator: Créateur
+crypto.favorites: Favoris
+more: Voir plus

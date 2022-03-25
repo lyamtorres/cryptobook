@@ -6,16 +6,16 @@
     <link rel="stylesheet" href="https://bootswatch.com/5/yeti/bootstrap.min.css">
 
     <div class="container">
-        <h1>Liste de Cryptomonnaies</h1>
+        <h1>{{'crypto.list'|trans}}</h1>
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nom</th>
-                <th scope="col">Créateur</th>
-                <th scope="col">Quantité</th>
-                <th scope="col">J'aime</th>
-                <th scope="col">Favoris</th>
+                <th scope="col">{{'crypto.name'|trans}}</th>
+                <th scope="col">{{'crypto.creator'|trans}}</th>
+                <th scope="col">{{'crypto.quantity'|trans}}</th>
+                <th scope="col">{{'crypto.likes'|trans}}</th>
+                <th scope="col">{{'crypto.favorites'|trans}}</th>
             </tr>
             </thead>
             <tbody>
@@ -27,7 +27,7 @@
                 <td>{{ crypto.quantite }}</td>
                 <td>{{ crypto.nbLikes }}</td>
                 <td>⭐</td>
-                <td><a href="{{ path('crypto_info', {nom: crypto.nom}) }}">Voir plus</a></td>
+                <td><a href="{{ path('crypto_info', {nom: crypto.nom}) }}">{{'more'|trans}}</a></td>
             </tr>
             {% endfor %}
             </tbody>
