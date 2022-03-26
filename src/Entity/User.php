@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -40,6 +42,23 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $pseudo;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Crypto::class, mappedBy="createur")
+     */
+    private $cryptos;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Crypto::class, mappedBy="fans")
+     */
+    private $cryptosFavoris;
+
+    public function __construct()
+    {
+        $this->cryptos = new ArrayCollection();
+        $this->cryptosFavoris = new ArrayCollection();
+        $this->setRoles(array("ROLE_USER"));
+    }
 
     public function getId(): ?int
     {
@@ -132,5 +151,67 @@ class User implements UserInterface
         $this->pseudo = $pseudo;
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Crypto>
+     */
+    public function getCryptos(): Collection
+    {
+        return $this->cryptos;
+    }
+
+    public function addCrypto(Crypto $crypto): self
+    {
+        if (!$this->cryptos->contains($crypto)) {
+            $this->cryptos[] = $crypto;
+            $crypto->setCreateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCrypto(Crypto $crypto): self
+    {
+        if ($this->cryptos->removeElement($crypto)) {
+            // set the owning side to null (unless already changed)
+            if ($crypto->getCreateur() === $this) {
+                $crypto->setCreateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Crypto>
+     */
+    public function getCryptosFavoris(): Collection
+    {
+        return $this->cryptosFavoris;
+    }
+
+    public function addCryptosFavori(Crypto $cryptosFavori): self
+    {
+        if (!$this->cryptosFavoris->contains($cryptosFavori)) {
+            $this->cryptosFavoris[] = $cryptosFavori;
+            $cryptosFavori->addFan($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCryptosFavori(Crypto $cryptosFavori): self
+    {
+        if ($this->cryptosFavoris->removeElement($cryptosFavori)) {
+            $cryptosFavori->removeFan($this);
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getPseudo();
     }
 }

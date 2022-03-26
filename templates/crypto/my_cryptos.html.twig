@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes cryptomonnaies{% endblock %}
+
+{% block body %}
+
+    <div class="example-wrapper">
+        <h1>Mes cryptomonnaies</h1>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Créateur</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">J'aime</th>
+                {% if app.user %}
+                    <th scope="col">Favoris</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for crypto in cryptos %}
+                <tr>
+                    <td><a href="{{ path('crypto_info', {nom: crypto.nom}) }}">{{ crypto.nom }}</a></td>
+                    <td>{{ crypto.createur }}</td>
+                    <td>{{ crypto.quantite }}</td>
+                    <td>{{ crypto.nbLikes }}</td>
+                    {% if app.user %}
+                        <td>⭐</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

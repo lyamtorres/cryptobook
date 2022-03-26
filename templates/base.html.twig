@@ -1,90 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
-    {# Run `composer require symfony/webpack-encore-bundle`
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
-    {% block stylesheets %}
-        <link href="{{ asset('https://bootswatch.com/5/yeti/bootstrap.min.css') }}" rel="stylesheet">
-    {% endblock %}
+        {% block stylesheets %}
+            {#{{ encore_entry_link_tags('app') }}#}
+        {% endblock %}
 
-    {% block javascripts %}
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
 
-    {% endblock %}
-</head>
-<body id="{% block body_id %}{% endblock %}">
+        <link rel="stylesheet" href="https://bootswatch.com/5/yeti/bootstrap.min.css">
 
-    {% block header %}
-        <header style="padding-bottom: 1rem">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <div class="container">
-                    <a class="navbar-brand" href="#">Cryptobook</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+                <a class="navbar-brand">Cryptobook</a>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_crypto') }}">Accueil</a>
+                    </li>
+                </ul>
+            </div>
 
+            {% if app.user %}
+                <div>
                     <div class="collapse navbar-collapse" id="navbarColor01">
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
-                                <a class="nav-link active" href="{{ path('app_crypto') }}">{{'home'|trans}}
-                                    <span class="visually-hidden">(current)</span>
-                                </a>
+                                <a class="nav-link" href="{{ path('new_crypto') }}">Ajouter_une_crypto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_my_crypto') }}">Mes_cryptos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
                             </li>
                         </ul>
-                        <div class="d-flex">
-                            <ul class="navbar-nav me-auto">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" ariahaspopup="true" aria-expanded="false">
-                                        <span class="glyphicon glyphicon-globe"></span> <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        {% for key, locale in locales %}
-                                            <li><a href="{{ path(app.request.get('_route'),
-                                                    app.request.attributes.get('_route_params')|merge({'_locale': key})) }}">{{locale}}</a></li>
-                                        {% endfor %}
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">{{'languages'|trans}}</a>
-                                    <div class="dropdown-menu show" data-bs-popper="none">
-                                        <ul>
-                                            {% for key, locale in locales %}
-                                                <li><a href="{{ path(app.request.get('_route'),
-                                                        app.request.attributes.get('_route_params')|merge({'_locale': key})) }}" style="color: white">{{locale}}</a></li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">{{'registration'|trans}}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">{{'login'|trans}}</a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
-            </nav>
-        </header>
-    {% endblock %}
-
-    {% block body %}{% endblock %}
-
-    {% block footer %}
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div id="footer-copyright" class="col-md-6">
-                        <p>© 2020 Cryptobook</p>
-                    </div>
-                    <div id="footer-resources" class="col-md-6">
+            {% else %}
+                <div>
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-        </footer>
-    {% endblock %}
-
-</body>
+            {% endif %}
+        </nav>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
 </html>
-
