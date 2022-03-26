@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/.idea/cryptobook.iml" filepath="$PROJECT_DIR$/.idea/cryptobook.iml" />
-=======
       <module fileurl="file://$PROJECT_DIR$/.idea/Projet_DevWeb.iml" filepath="$PROJECT_DIR$/.idea/Projet_DevWeb.iml" />
->>>>>>> merge_test
     </modules>
   </component>
 </project>

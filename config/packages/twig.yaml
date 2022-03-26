@@ -3,10 +3,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     exception_controller: null
-<<<<<<< HEAD
     form_themes:
         - 'bootstrap_3_horizontal_layout.html.twig'
     globals:
         locales: '%languages%'
-=======
->>>>>>> merge_test
