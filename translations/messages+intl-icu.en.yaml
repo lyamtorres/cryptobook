@@ -1,0 +1,18 @@
+home: Home
+languages: Languages
+registration: Registration
+login: Login
+crypto.symbol: Symbol
+crypto.price: Price
+crypto.category: Category
+crypto.quantity: Quantity
+crypto.date: Date
+crypto.likes: Likes
+crypto.list: 'List of Cryptocurrencies'
+crypto.name: Name
+crypto.creator: Creator
+crypto.favorites: Favorites
+more: 'See more'
+crypto.add: Add
+crypto.personal: Wallet
+logout: Logout
