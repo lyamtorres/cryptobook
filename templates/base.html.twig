@@ -15,6 +15,15 @@
 
         <link rel="stylesheet" href="https://bootswatch.com/5/yeti/bootstrap.min.css">
 
+        <style>
+            li {
+                list-style: none;
+            }
+
+            a {
+                text-decoration:none;
+            }
+        </style>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -22,7 +31,7 @@
                 <a class="navbar-brand">Cryptobook</a>
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_crypto') }}">Accueil</a>
+                        <a class="nav-link" href="{{ path('app_crypto') }}">{{'home'|trans}}</a>
                     </li>
                 </ul>
             </div>
@@ -31,14 +40,25 @@
                 <div>
                     <div class="collapse navbar-collapse" id="navbarColor01">
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('new_crypto') }}">Ajouter_une_crypto</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true" onclick="hideShow()">{{'languages'|trans}}</a>
+                                <div class="dropdown-menu show" data-bs-popper="none">
+                                    <ul>
+                                        {% for key, locale in locales %}
+                                            <li><a href="{{ path(app.request.get('_route'),
+                                                    app.request.attributes.get('_route_params')|merge({'_locale': key})) }}" style="color: white">{{locale}}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_my_crypto') }}">Mes_cryptos</a>
+                                <a class="nav-link" href="{{ path('new_crypto') }}">{{'crypto.add'|trans}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                                <a class="nav-link" href="{{ path('app_my_crypto') }}">{{'crypto.personal'|trans}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_logout') }}">{{'logout'|trans}}</a>
                             </li>
                         </ul>
                     </div>
@@ -47,11 +67,22 @@
                 <div>
                     <div class="collapse navbar-collapse" id="navbarColor01">
                         <ul class="navbar-nav me-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle show" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="true">{{'languages'|trans}}</a>
+                                <div class="dropdown-menu show" data-bs-popper="none">
+                                    <ul>
+                                        {% for key, locale in locales %}
+                                            <li><a href="{{ path(app.request.get('_route'),
+                                                    app.request.attributes.get('_route_params')|merge({'_locale': key})) }}" style="color: white; text-decoration: none">{{locale}}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                                <a class="nav-link" href="{{ path('app_register') }}">{{'registration'|trans}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">{{'login'|trans}}</a>
                             </li>
                         </ul>
                     </div>
@@ -62,4 +93,13 @@
             {% block body %}{% endblock %}
         </div>
     </body>
+    <script>
+        function hideShow() {
+            const dropdownMenu = document.querySelector("#languages-dropdown");
+            if (dropdownMenu.className === "dropdown-menu show") {
+                alert("confirmado");
+            }
+
+        }
+    </script>
 </html>

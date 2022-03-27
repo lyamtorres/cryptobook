@@ -16,7 +16,21 @@ use Doctrine\ORM\EntityManagerInterface;
 class CryptoController extends AbstractController
 {
     /**
-     * @Route("/", name="app_crypto")
+     * @[Route('/')]
+     */
+    public function indexNoLocale(): Response
+    {
+        return $this->redirectToRoute('app_crypto', ['_locale' => 'fr']);
+    }
+
+    /**
+     * @Route(
+     *     "/{_locale}",
+     *     name="app_crypto",
+     *     requirements={
+     *         "_locale": "en|es|fr",
+     *     }
+     * )
      */
     public function index(): Response
     {
@@ -30,9 +44,13 @@ class CryptoController extends AbstractController
     }
 
     /**
-     * @Route("/details/{nom}", methods={"GET"}, name="crypto_info")
-     *
-     * Affiche les détails d'une cryptomonnaie après avoir cliqué sur l'option 'voir plus'
+     * @Route(
+     *     "/{_locale}/user/{nom}",
+     *     name="crypto_info",
+     *     requirements={
+     *         "_locale": "en|es|fr",
+     *     }
+     * )
      */
     public function cryptoShow(Crypto $crypto): Response
     {

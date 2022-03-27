@@ -5,16 +5,16 @@
 {% block body %}
 
     <div class="example-wrapper">
-        <h1>Liste des cryptomonnaies</h1>
+        <h1>{{'crypto.list'|trans}}</h1>
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">Nom</th>
-                <th scope="col">Créateur</th>
-                <th scope="col">Quantité</th>
-                <th scope="col">J'aime</th>
+                <th scope="col">{{'crypto.name'|trans}}</th>
+                <th scope="col">{{'crypto.creator'|trans}}</th>
+                <th scope="col">{{'crypto.quantity'|trans}}</th>
+                <th scope="col">{{'crypto.likes'|trans}}</th>
                 {% if app.user %}
-                    <th scope="col">Favoris</th>
+                    <th scope="col">{{'crypto.favorites'|trans}}</th>
                 {% endif %}
             </tr>
             </thead>

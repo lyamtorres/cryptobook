@@ -5,15 +5,15 @@
 {% block body %}
     <div class="container">
         <h1>{{ crypto.nom }}</h1>
-        <h2>Nom du créateur</h2>
+        <h2>{{ crypto.createur }}</h2>
         <br>
         <ul>
-            <li>Symbole : {{ crypto.symbole }}</li>
-            <li>Prix : {{ crypto.prix }}</li>
-            <li>Categorie : {{ crypto.categorie }}</li>
-            <li>Quantité : {{ crypto.quantite }}</li>
-            <li>Date : {{ crypto.date|date("d/m/Y") }}</li>
-            <li>Nombre de j'aime : {{ crypto.nbLikes }}</li>
+            <li>{{'crypto.symbol'|trans}} : {{ crypto.symbole }}</li>
+            <li>{{'crypto.price'|trans}} : {{ crypto.prix }}</li>
+            <li>{{'crypto.category'|trans}} : {{ crypto.categorie }}</li>
+            <li>{{'crypto.quantity'|trans}} : {{ crypto.quantite }}</li>
+            <li>{{'crypto.date'|trans}} : {{ crypto.date|date("d/m/Y") }}</li>
+            <li>{{'crypto.likes'|trans}} : {{ crypto.nbLikes }}</li>
         </ul>
     </div>
 {% endblock %}
