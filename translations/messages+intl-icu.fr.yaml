@@ -8,11 +8,12 @@ crypto.category: Categorie
 crypto.quantity: Quantité
 crypto.date: Date
 crypto.likes: 'J''aime'
-crypto.list: 'Liste de cryptomonnaies'
+crypto.list: 'Liste des cryptomonnaies'
+crypto.mylist: 'Mes cryptomonnaies'
 crypto.name: Nom
 crypto.creator: Créateur
 crypto.favorites: Favoris
 more: 'Voir plus'
-crypto.add: Ajouter
-crypto.personal: Portefeuilles
+crypto.add: 'Ajouter une crypto'
+crypto.personal: Portefeuille
 logout: Déconnexion

@@ -13,6 +13,6 @@ crypto.name: Name
 crypto.creator: Creator
 crypto.favorites: Favorites
 more: 'See more'
-crypto.add: Add
+crypto.add: 'Add a cryptocurrency'
 crypto.personal: Wallet
 logout: Logout

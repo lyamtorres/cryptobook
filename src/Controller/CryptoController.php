@@ -60,6 +60,7 @@ class CryptoController extends AbstractController
     }
 
     /**
+     * @isGranted("ROLE_USER")
      * @Route("/my_cryptos", name="app_my_crypto")
      */
     public function myCryptosShow(): Response
@@ -81,7 +82,7 @@ class CryptoController extends AbstractController
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
      */
-    public function create(Request $request, EntityManagerInterface $em) : Response
+    public function createCrytpo(Request $request, EntityManagerInterface $em) : Response
     {
         $user = $this->getUser();
 
@@ -99,6 +100,54 @@ class CryptoController extends AbstractController
         return $this->render('crypto/create.html.twig', [
             'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * Éditer une cryptomonnaie.
+     * @isGranted("ROLE_USER")
+     * @Route("my_cryptos/{nom}/edit", name="edit_crypto")
+     * @param Request $request
+     * @param EntityManagerInterface $em
+     * @return RedirectResponse|Response
+     */
+    public function editCrypto(Request $request, Crypto $crypto, EntityManagerInterface $em) : Response
+    {
+        $form = $this->createForm(CryptoType::class, $crypto);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->flush();
+            return $this->redirectToRoute('app_my_crypto');
+        }
+        return $this->render('crypto/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * Supprimer une cryptomonnaie.
+     * @isGranted("ROLE_USER")
+     * @Route("stage/{nom}/delete", name="delete_crypto")
+     * @param Request $request
+     * @param Crypto $crypto
+     * @param EntityManagerInterface $em
+     * @return Response
+     */
+    public function delete(Request $request, Crypto $crypto, EntityManagerInterface $em) : Response
+    {
+        $form = $this->createFormBuilder()
+            ->setAction($this->generateUrl('delete_crypto', ['nom' => $crypto->getNom()]))
+            ->getForm();
+        $form->handleRequest($request);
+        if (!$form->isSubmitted() || ! $form->isValid()) {
+            return $this->render('crypto/delete.html.twig', [
+                'crypto' => $crypto,
+                'form' => $form->createView(),
+            ]);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($crypto);
+        $em->flush();
+        return $this->redirectToRoute('app_my_crypto');
     }
 
 }
