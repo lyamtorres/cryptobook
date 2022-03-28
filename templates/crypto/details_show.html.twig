@@ -16,4 +16,16 @@
             <li>{{'crypto.likes'|trans}} : {{ crypto.nbLikes }}</li>
         </ul>
     </div>
+
+    <div id="post-add-comment" class="well">
+        {# The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered
+        their credentials (login + password) during this session. If they
+        are automatically logged via the 'Remember Me' functionality, they won't
+        be able to add a comment.
+        See https://symfony.com/doc/current/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
+        #}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            {{ render(controller('App\\Controller\\CryptoController::commentForm', {'id': crypto.id})) }}
+        {% endif %}
+    </div>
 {% endblock %}

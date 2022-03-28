@@ -67,10 +67,16 @@ class Crypto
      */
     private $fans;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="cryptocurrency")
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->fans = new ArrayCollection();
         $this->date = new \DateTime();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -201,5 +207,35 @@ class Crypto
     public function __toString()
     {
         return (string) $this->getCreateur();
+    }
+
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setCryptocurrency($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getCryptocurrency() === $this) {
+                $comment->setCryptocurrency(null);
+            }
+        }
+
+        return $this;
     }
 }
