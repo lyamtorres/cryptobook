@@ -26,6 +26,33 @@
         #}
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             {{ render(controller('App\\Controller\\CryptoController::commentForm', {'id': crypto.id})) }}
+        {% else %}
+            <p>
+                <a class="btn btn-success" href="{{ path('app_login', {'redirect_to': app.request.pathInfo}) }}">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
+                </a>
+                {{ 'post.to_publish_a_comment'|trans }}
+            </p>
         {% endif %}
     </div>
+
+    {% for comment in crypto.comments %}
+        <div class="row post-comment">
+            <a name="comment_{{ comment.id }}"></a>
+            <h4 class="col-sm-3">
+                <strong>{{ comment.author.pseudo }}</strong> {{ 'post.commented_on'|trans }}
+                {# it's not mandatory to set the timezone in localizeddate(). This is done to
+                   avoid errors when the 'intl' PHP extension is not available and the application
+                   is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
+                <strong>{{ comment.publishedAt|format_datetime() }}</strong>
+            </h4>
+            <div class="col-sm-9">
+                {{ comment.content }}
+            </div>
+        </div>
+    {% else %}
+        <div class="post-comment">
+            <p>{{ 'post.no_comments'|trans }}</p>
+        </div>
+    {% endfor %}
 {% endblock %}

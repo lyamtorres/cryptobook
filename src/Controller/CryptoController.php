@@ -6,6 +6,7 @@ use App\Entity\Crypto;
 use App\Entity\Comment;
 use App\Form\CryptoType;
 use App\Form\CommentFormType;
+use App\Events\CommentCreatedEvent;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -99,17 +100,15 @@ class CryptoController extends AbstractController
 
     /**
      * @Route("/comment/{cryptoName}/new", methods={"POST"}, name="comment_new")
-     * @IsGranted("IS_AUTHENTICATED_FULLY")
-     * @ParamConverter("name", options={"mapping": {"cryptoName": "name"}})
-     *
-     * NOTE: The ParamConverter mapping is required because the route parameter
-     * (postSlug) doesn't match any of the Doctrine entity properties (slug).
-     * See https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/annotations/converters.html#doctrine-converter
+     * @ParamConverter("crypto", options={"mapping": {"cryptoName" : "nom"}})
+     * @isGranted("ROLE_USER")
      */
     public function commentNew(Request $request, Crypto $crypto, EventDispatcherInterface $eventDispatcher): Response
     {
         $comment = new Comment();
         $comment->setAuthor($this->getUser());
+        $comment->setCryptocurrency($crypto);
+        $comment->setPublishedAt(new \DateTimeImmutable('now'));
         $crypto->addComment($comment);
 
         $form = $this->createForm(CommentFormType::class, $comment);
@@ -120,14 +119,9 @@ class CryptoController extends AbstractController
             $em->persist($comment);
             $em->flush();
 
-            // When an event is dispatched, Symfony notifies it to all the listeners
-            // and subscribers registered to it. Listeners can modify the information
-            // passed in the event and they can even modify the execution flow, so
-            // there's no guarantee that the rest of this controller will be executed.
-            // See https://symfony.com/doc/current/components/event_dispatcher.html
             $eventDispatcher->dispatch(new CommentCreatedEvent($comment));
 
-            return $this->redirectToRoute('crypto_info', ['name' => $crypto->getNom()]);
+            return $this->redirectToRoute('crypto_info', ['nom' => $crypto->getNom()]);
         }
 
         return $this->render('blog/comment_form_error.html.twig', [

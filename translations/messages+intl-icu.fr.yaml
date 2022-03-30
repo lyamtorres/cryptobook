@@ -16,3 +16,9 @@ more: 'Voir plus'
 crypto.add: Ajouter
 crypto.personal: Portefeuilles
 logout: Déconnexion
+title.add_comment: Ajouter un commentaire
+action.publish_comment: Publier commentaire
+title.comment_error: __title.comment_error
+action.sign_in: Se connecter
+post.to_publish_a_comment: Connectez-vous pour publier un commentaire.
+post.commented_on: Commenté le
