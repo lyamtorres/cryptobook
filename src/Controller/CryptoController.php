@@ -95,6 +95,7 @@ class CryptoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($crypto);
             $em->flush();
+          
             return $this->redirectToRoute('app_my_crypto');
         }
         return $this->render('crypto/create.html.twig', [

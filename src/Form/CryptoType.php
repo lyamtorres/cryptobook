@@ -34,7 +34,6 @@ class CryptoType extends AbstractType
             ->add('quantiteMax', IntegerType::class)
 
             //->add('nbLikes')
-
             //->add('fans')
         ;
     }

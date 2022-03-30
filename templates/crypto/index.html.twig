@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cryptomonnaies{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 
@@ -9,12 +9,12 @@
         <table class="table text-center">
             <thead>
             <tr>
-                <th class="active text-center" scope="col">Nom</th>
-                <th class="active text-center" scope="col">Créateur</th>
-                <th class="active text-center" scope="col">Quantité</th>
-                <th class="active text-center" scope="col">J'aime</th>
+                <th class="active text-center" scope="col">{{'crypto.name'|trans}}</th>
+                <th class="active text-center" scope="col">{{'crypto.creator'|trans}}</th>
+                <th class="active text-center" scope="col">{{'crypto.quantity'|trans}}</th>
+                <th class="active text-center" scope="col">{{'crypto.likes'|trans}}</th>
                 {% if app.user %}
-                    <th class="active text-center" scope="col">Favoris</th>
+                    <th class="active text-center" scope="col">{{'crypto.favorites'|trans}}</th>
                 {% endif %}
             </tr>
             </thead>
