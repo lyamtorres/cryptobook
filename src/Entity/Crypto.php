@@ -42,6 +42,7 @@ class Crypto
     private $categorie;
 
     /**
+     * @Assert\Type(type="integer")
      * @ORM\Column(type="integer", nullable=true)
      */
     private $quantite;
@@ -67,10 +68,23 @@ class Crypto
      */
     private $fans;
 
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
+     */
+    private $dateMaj;
+
+    /**
+     * @Assert\Type(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $quantiteMax;
+
     public function __construct()
     {
         $this->fans = new ArrayCollection();
         $this->date = new \DateTime();
+        $this->dateMaj = new \DateTime();
     }
 
     public function getId(): ?int
@@ -201,5 +215,29 @@ class Crypto
     public function __toString()
     {
         return (string) $this->getCreateur();
+    }
+
+    public function getDateMaj(): ?\DateTimeInterface
+    {
+        return $this->dateMaj;
+    }
+
+    public function setDateMaj(\DateTimeInterface $dateMaj): self
+    {
+        $this->dateMaj = $dateMaj;
+
+        return $this;
+    }
+
+    public function getQuantiteMax(): ?int
+    {
+        return $this->quantiteMax;
+    }
+
+    public function setQuantiteMax(?int $quantiteMax): self
+    {
+        $this->quantiteMax = $quantiteMax;
+
+        return $this;
     }
 }

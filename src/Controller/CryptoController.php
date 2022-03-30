@@ -95,7 +95,7 @@ class CryptoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($crypto);
             $em->flush();
-            return $this->redirectToRoute('app_crypto');
+            return $this->redirectToRoute('app_my_crypto');
         }
         return $this->render('crypto/create.html.twig', [
             'form' => $form->createView()
@@ -112,6 +112,8 @@ class CryptoController extends AbstractController
      */
     public function editCrypto(Request $request, Crypto $crypto, EntityManagerInterface $em) : Response
     {
+        $date = new \DateTime();
+        $crypto->setDateMaj($date);
         $form = $this->createForm(CryptoType::class, $crypto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

@@ -11,7 +11,9 @@
             <li><strong>Catégorie : </strong>{{ crypto.categorie }}</li>
             <li><strong>Prix : </strong>{{ crypto.prix }}</li>
             <li><strong>Quantité : </strong>{{ crypto.quantite }}</li>
+            <li><strong>Quantité maximale disponible : </strong>{{ crypto.quantiteMax }}</li>
             <li><strong>Date de création : </strong>{{ crypto.date | date('m/d/Y') }}</li>
+            <li><strong>Date de dernière mise à jour : </strong>{{ crypto.dateMaj | date('m/d/Y') }}</li>
         </ul>
     </div>
     <div class="collapse navbar-collapse">
