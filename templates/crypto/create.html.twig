@@ -15,6 +15,7 @@
                 'required':'true',
                 'autofocus':'true'}
         }) }}
+        {{ form_errors(form.nom) }}
     </div>
     <div class="form-group">
         {{ form_label(form.symbole, 'Symbole :', {
@@ -26,6 +27,7 @@
                 'id':'inputSymbole',
                 'required':'true'}
         }) }}
+        {{ form_errors(form.symbole) }}
     </div>
     <div class="form-group">
         {{ form_label(form.prix, 'Prix :', {
@@ -37,6 +39,7 @@
                 'id':'inputPrix',
                 'required':'true'}
         }) }}
+        {{ form_errors(form.prix) }}
     </div>
     <div class="form-group">
         {{ form_label(form.categorie, 'Catégorie :', {
@@ -48,6 +51,7 @@
                 'id':'inputCategorie',
                 'required':'true'}
         }) }}
+        {{ form_errors(form.categorie) }}
     </div>
     <div class="form-group">
         {{ form_label(form.quantite, 'Quantité :', {
@@ -59,17 +63,27 @@
                 'id':'inputQuantite',
                 'required':'true'}
         }) }}
+        {{ form_errors(form.quantite) }}
     </div>
-    <div>
-        {{ form_row(form.date, {
-            attr: {'hidden':'false'},
-            label_attr: {'hidden':'false'}
+    <div class="form-group">
+        {{ form_label(form.quantiteMax, 'Quantité maximale :', {
+            label_attr: {'for':'inputQuantiteMax'}
         }) }}
+        {{ form_widget(form.quantiteMax, {
+            attr: {'class':'form-control',
+                'type':'number',
+                'placeholder':'Quantité maximale disponible de la cryptomonnaie',
+                'id':'inputQuantiteMax',
+                'required':'true'
+                }
+        }) }}
+        {{ form_errors(form.quantiteMax) }}
     </div>
     {{ form_widget(form) }}
 
     <div class="form-group">
         <button type="submit" class="btn btn-success">Enregistrer</button>
+        <a href="{{ path('app_my_crypto') }}" class="btn btn-danger" role="button">Annuler</a>
     </div>
     {{ form_end(form) }}
 {% endblock %}
