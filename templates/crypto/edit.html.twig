@@ -2,19 +2,19 @@
 
 {% block body %}
     <div style="float: right;">
-        <u>Vous êtes ici :</u> Accueil > {{ 'crypto.creation'|trans }}
+        <u>Vous êtes ici :</u> Accueil > Edition d'une cryptomonnaie
     </div>
 
-    <h1>{{ 'crypto.creation'|trans }}</h1>
+    <h1>Edition d'une cryptommonaie :</h1>
 
     {{ form_start(form) }}
     <div class="form-group">
-        {{ form_label(form.nom, 'crypto.name'|trans, {
+        {{ form_label(form.nom, 'Nom :', {
             label_attr: {'for':'inputName'}
         }) }}
         {{ form_widget(form.nom, {
             attr: {'class':'form-control',
-                'placeholder':'Bitcoin',
+                'placeholder':'Nom de la cryptomonnaie',
                 'id':'inputName',
                 'required':'true',
                 'autofocus':'true'}
@@ -22,72 +22,72 @@
         {{ form_errors(form.nom) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.symbole, 'crypto.symbol'|trans, {
+        {{ form_label(form.symbole, 'Symbole :', {
             label_attr: {'for':'inputSymbole'}
         }) }}
         {{ form_widget(form.symbole, {
             attr: {'class':'form-control',
-                'placeholder':'BTC',
+                'placeholder':'Symbole de la cryptomonnaie',
                 'id':'inputSymbole',
                 'required':'true'}
         }) }}
         {{ form_errors(form.symbole) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.prix, 'crypto.price'|trans, {
+        {{ form_label(form.prix, 'Prix :', {
             label_attr: {'for':'inputPrix'}
         }) }}
         {{ form_widget(form.prix, {
             attr: {'class':'form-control',
-                'placeholder':'41746',
+                'placeholder':'Prix de la cryptomonnaie',
                 'id':'inputPrix',
                 'required':'true'}
         }) }}
         {{ form_errors(form.prix) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.categorie, 'crypto.category'|trans, {
+        {{ form_label(form.categorie, 'Catégorie :', {
             label_attr: {'for':'inputCategorie'}
         }) }}
         {{ form_widget(form.categorie, {
             attr: {'class':'form-control',
-                'placeholder':'Coin',
+                'placeholder':'Catégorie de la cryptomonnaie',
                 'id':'inputCategorie',
                 'required':'true'}
         }) }}
         {{ form_errors(form.categorie) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.quantite, 'crypto.quantity'|trans, {
+        {{ form_label(form.quantite, 'Quantité :', {
             label_attr: {'for':'inputQuantite'}
         }) }}
         {{ form_widget(form.quantite, {
             attr: {'class':'form-control',
-                'placeholder':'500',
+                'placeholder':'Quantité de la cryptomonnaie',
                 'id':'inputQuantite',
                 'required':'true'}
         }) }}
         {{ form_errors(form.quantite) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.quantiteMax, 'crypto.max'|trans, {
+        {{ form_label(form.quantiteMax, 'Quantité maximale :', {
             label_attr: {'for':'inputQuantiteMax'}
         }) }}
         {{ form_widget(form.quantiteMax, {
             attr: {'class':'form-control',
                 'type':'number',
-                'placeholder':'21000000',
+                'placeholder':'Quantité maximale disponible de la cryptomonnaie',
                 'id':'inputQuantiteMax',
                 'required':'true'
-                }
+            }
         }) }}
         {{ form_errors(form.quantiteMax) }}
     </div>
     {{ form_widget(form) }}
 
     <div class="form-group">
-        <button type="submit" class="btn btn-success">{{ 'form.save'|trans }}</button>
-        <a href="{{ path('app_my_crypto') }}" class="btn btn-danger" role="button">{{ 'form.cancel'|trans }}</a>
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+        <a href="{{ path('app_my_crypto') }}" class="btn btn-danger" role="button">Annuler</a>
     </div>
     {{ form_end(form) }}
 {% endblock %}

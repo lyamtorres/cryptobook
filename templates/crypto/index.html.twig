@@ -3,6 +3,9 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
+    <div style="float: right;">
+        <u>Vous êtes ici :</u> Accueil
+    </div>
 
     <div class="container" style="display: inline; float: left; width: 75%;">
         <h1>{{'crypto.list'|trans}}</h1>
@@ -38,7 +41,7 @@
         {% endif %}
     </div>
 
-    <div class="container" style="display: inline; float: left; width: 23%; margin-left: 2%; margin-top: 6%; border-radius: 5% 5%; border: 3px groove #575a5c;">
+    <div class="container" style="display: inline; float: left; width: 23%; margin-left: 2%; margin-top: 5%; border-radius: 5% 5%; border: 3px groove #575a5c;">
         <h3>{{'filters'|trans}}</h3>
 
         {{ form_start(researchForm) }}
