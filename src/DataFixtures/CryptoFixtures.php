@@ -18,7 +18,9 @@ class CryptoFixtures extends Fixture
         $crypto1->setPrix(37758.43);
         $crypto1->setCategorie('Coin');
         $crypto1->setQuantite(20000000);
+        $crypto1->setQuantiteMax(21000000);
         $crypto1->setDate(date_create('2008-10-31'));
+        $crypto1->setDateMaj(date_create('2012-08-09'));
         $crypto1->setNbLikes(48);
         //$crypto1->setCreateur($manager->merge($this->getReference('Noelie')));
         $manager->persist($crypto1);
@@ -29,7 +31,9 @@ class CryptoFixtures extends Fixture
         $crypto2->setPrix(2726.66);
         $crypto2->setCategorie('Token');
         $crypto2->setQuantite(113500000);
+        $crypto1->setQuantiteMax(113500001);
         $crypto2->setDate(date_create('2015-07-30'));
+        $crypto2->setDateMaj(date_create('2019-07-30'));
         $crypto2->setNbLikes(23);
         //$crypto2->setCreateur($manager->merge($this->getReference('Noelie')));
         $manager->persist($crypto2);

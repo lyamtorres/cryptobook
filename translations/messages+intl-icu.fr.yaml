@@ -8,13 +8,14 @@ crypto.category: Categorie
 crypto.quantity: Quantité
 crypto.date: Date
 crypto.likes: 'J''aime'
-crypto.list: 'Liste de cryptomonnaies'
+crypto.list: 'Liste des cryptomonnaies'
+crypto.mylist: 'Mes cryptomonnaies'
 crypto.name: Nom
 crypto.creator: Créateur
 crypto.favorites: Favoris
 more: 'Voir plus'
-crypto.add: Ajouter
-crypto.personal: Portefeuilles
+crypto.add: 'Ajouter une crypto'
+crypto.personal: Portefeuille
 logout: Déconnexion
 title.add_comment: Ajouter un commentaire
 action.publish_comment: Publier commentaire
@@ -22,3 +23,4 @@ title.comment_error: __title.comment_error
 action.sign_in: Se connecter
 post.to_publish_a_comment: Connectez-vous pour publier un commentaire.
 post.commented_on: Commenté le
+search: Recherche

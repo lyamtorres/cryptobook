@@ -13,7 +13,7 @@ crypto.name: Nombre
 crypto.creator: Creador
 crypto.favorites: Favoritos
 more: 'Ver más'
-crypto.add: Agregar
+crypto.add: 'Agregar una criptomoneda'
 crypto.personal: Cartera
 logout: Salir
 title.add_comment: Añadir un comentario

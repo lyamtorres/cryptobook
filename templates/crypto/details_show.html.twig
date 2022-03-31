@@ -12,7 +12,9 @@
             <li>{{'crypto.price'|trans}} : {{ crypto.prix }}</li>
             <li>{{'crypto.category'|trans}} : {{ crypto.categorie }}</li>
             <li>{{'crypto.quantity'|trans}} : {{ crypto.quantite }}</li>
+            <li>Quantité maximale disponible : {{ crypto.quantiteMax }}</li>
             <li>{{'crypto.date'|trans}} : {{ crypto.date|date("d/m/Y") }}</li>
+            <li>Date de dernière mise à jour : {{ crypto.dateMaj|date("d/m/Y") }}</li>
             <li>{{'crypto.likes'|trans}} : {{ crypto.nbLikes }}</li>
         </ul>
     </div>
