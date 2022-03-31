@@ -22,7 +22,7 @@ title.comment_error: __title.comment_error
 action.sign_in: 'Sign in'
 post.to_publish_a_comment: 'Sign in to post a comment.'
 post.commented_on: 'Commented the'
-post.no_comments: There are no comments for now.
+post.no_comments: 'There are no comments for now.'
 crypto.mylist: 'My cryptocurrencies'
 filters: Filters
 form.apply: Apply
@@ -38,13 +38,14 @@ username: Username
 email: Email
 password: Password
 form.register: Register
-form.login: Please login
+form.login: 'Please login'
 form.button.login: Login
 comments: Comments
-
-direction:
-crypto.maxQuantity:
-crypto.lastUpdate:
-crypto.edition:
-avertissement:
-warning:
+direction: You are here
+avertissement: Warning!
+warning: 'You are about to delete the fallowing cryptocurrency:'
+crypto.maxQuantity: Max quantity available
+crypto.lastUpdate: Last update date
+post.cant_see_comments: Login to see the comments
+crypto.edition: Edit a cryptocurrency
+'change.mode': Change mode

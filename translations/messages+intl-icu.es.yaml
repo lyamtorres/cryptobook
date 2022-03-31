@@ -22,7 +22,7 @@ title.comment_error: __title.comment_error
 action.sign_in: 'Iniciar sesión'
 post.to_publish_a_comment: 'Inicia sesión para publicar un comentario.'
 post.commented_on: 'Comentado el'
-post.no_comments: No hay ningún comentario por el momento.
+post.no_comments: 'No hay ningún comentario por el momento.'
 crypto.mylist: 'Mis criptomonedas'
 filters: Filtros
 form.apply: Aplicar
@@ -38,14 +38,14 @@ username: 'Nombre de usuario'
 email: 'Correo electrónico'
 password: Contraseña
 form.register: Registrarse
-form.login: Por favor iniciar sesión
-form.button.login: Iniciar sesión
+form.login: 'Por favor iniciar sesión'
+form.button.login: 'Iniciar sesión'
 comments: Comentarios
-
-direction:
-crypto.maxQuantity:
-crypto.lastUpdate:
-crypto.edition:
-avertissement:
-warning:
-
+direction: Estás aqui
+avertissement: ¡Advertencia!
+warning: 'Estás a punto de borrar la siguiente criptomoneda:'
+crypto.maxQuantity: Cantidad máxima disponible
+crypto.lastUpdate: Fecha de la última actualización
+post.cant_see_comments: Inicia sesión para ver los comentarios
+crypto.edition: Editar una criptomoneda
+'change.mode': Cambiar modo
