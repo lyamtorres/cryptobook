@@ -105,7 +105,6 @@ class CryptoController extends AbstractController
     /**
      * Créer une nouvelle crypto
      * @isGranted("ROLE_USER")
-     * @Route("/new", name="new_crypto")
      * @Route(
      *     "/{_locale}/new",
      *     name="new_crypto",
@@ -139,7 +138,12 @@ class CryptoController extends AbstractController
     }
 
     /**
-     * @Route("/comment/{cryptoName}/new", methods={"POST"}, name="comment_new")
+     * @Route("/{_locale}/comment/{cryptoName}/new",
+     *     methods={"POST"},
+     *     name="comment_new",
+     *     requirements={
+     *         "_locale": "en|es|fr",
+     *     })
      * @ParamConverter("crypto", options={"mapping": {"cryptoName" : "nom"}})
      * @isGranted("ROLE_USER")
      */
@@ -170,7 +174,11 @@ class CryptoController extends AbstractController
     }
      /**
      * @isGranted("ROLE_USER")
-     * @Route("my_cryptos/{nom}/edit", name="edit_crypto")
+     * @Route("{_locale}/my_cryptos/{nom}/edit",
+      *     name="edit_crypto",
+      *     requirements={
+      *         "_locale": "en|es|fr",
+      *     })
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -208,32 +216,13 @@ class CryptoController extends AbstractController
         ]);
     }
 
-    /**
-     * This controller is called directly via the render() function in the
-     * blog/post_show.html.twig template. That's why it's not needed to define
-     * a route name for it.
-     *
-     * The "id" of the Post is passed in and then turned into a Post object
-     * automatically by the ParamConverter.
-     */
-    public function myCommentForm(Crypto $crypto): Response
-    {
-        $form = $this->createForm(MyCommentFormType::class);
-
-        $comments = $this->getDoctrine()
-            ->getRepository(Comment::class)
-            ->findBy(array('author' => $this->getUser()));
-
-        return $this->render('crypto/details_show.html.twig', [
-            'crypto' => $crypto,
-            'formMyComments' => $form->createView(),
-            'comments' => $comments
-        ]);
-    }
-
      /**
      * @isGranted("ROLE_USER")
-     * @Route("stage/{nom}/delete", name="delete_crypto")
+     * @Route("{_locale}/crytpo/{nom}/delete",
+      *     name="delete_crypto",
+      *     requirements={
+      *         "_locale": "en|es|fr",
+      *     })
      * @param Request $request
      * @param Crypto $crypto
      * @param EntityManagerInterface $em

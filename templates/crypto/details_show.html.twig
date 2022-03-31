@@ -6,7 +6,7 @@
     <div class="container">
         {% set current_path = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|split('/') %}
         <div style="float: right;">
-            <u>Vous êtes ici :</u> Accueil > {{ current_path[3] }}
+            <u>{{ 'direction'|trans }} :</u> {{'home'|trans}} > {{ current_path[3] }}
         </div>
 
         <div class="container" style="display: inline; float: left; width: 60%;">
@@ -18,9 +18,9 @@
                 <li>{{'crypto.price'|trans}} : {{ crypto.prix }}</li>
                 <li>{{'crypto.category'|trans}} : {{ crypto.categorie }}</li>
                 <li>{{'crypto.quantity'|trans}} : {{ crypto.quantite }}</li>
-                <li>Quantité maximale disponible : {{ crypto.quantiteMax }}</li>
+                <li>{{'crypto.maxQuantity'|trans}} : {{ crypto.quantiteMax }}</li>
                 <li>{{'crypto.date'|trans}} : {{ crypto.date|date("d/m/Y") }}</li>
-                <li>Date de dernière mise à jour : {{ crypto.dateMaj|date("d/m/Y") }}</li>
+                <li>{{'crypto.lastUpdate'|trans}} : {{ crypto.dateMaj|date("d/m/Y") }}</li>
                 <li>{{'crypto.likes'|trans}} : {{ crypto.nbLikes }}</li>
             </ul>
 

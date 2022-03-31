@@ -43,3 +43,10 @@ form.register: S'inscrire
 form.login: Veuillez vous connecter
 form.button.login: Se connecter
 comments: Commentaires
+
+direction: 'Vous êtes ici'
+crypto.maxQuantity: 'Quantité maximale disponible'
+crypto.lastUpdate: 'Date de dernière mise à jour'
+crypto.edition: 'Editer une cryptomonnaie'
+avertissement: 'Avertissement !'
+warning: 'Vous êtes en train de supprimer la cryptomonnaie suivante :'

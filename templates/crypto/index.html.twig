@@ -4,7 +4,7 @@
 
 {% block body %}
     <div style="float: right;">
-        <u>Vous êtes ici :</u> Accueil
+        <u>{{'direction'|trans}} :</u> {{'home'|trans}}
     </div>
 
     <div class="container" style="display: inline; float: left; width: 75%;">
@@ -53,7 +53,7 @@
             }) }}
             {{ form_widget(researchForm.nom, {
                 attr: {'class':'form-control',
-                    'placeholder':'Nom',
+                    'placeholder':'crypto.name'|trans,
                     'id':'inputSearchNom',
                     }
             }) }}
@@ -63,7 +63,7 @@
             }) }}
             {{ form_widget(researchForm.symbole, {
                 attr: {'class':'form-control',
-                    'placeholder':'Symbole',
+                    'placeholder':'crypto.symbol'|trans,
                     'id':'inputSearchSymbole',
                 }
             }) }}
@@ -73,7 +73,7 @@
             }) }}
             {{ form_widget(researchForm.categorie, {
                 attr: {'class':'form-control',
-                    'placeholder':'Symbole',
+                    'placeholder':'crypto.category'|trans,
                     'id':'inputSearchCategorie',
                 }
             }) }}
@@ -83,7 +83,7 @@
             }) }}
             {{ form_widget(researchForm.createur, {
                 attr: {'class':'form-control',
-                    'placeholder':'Créateur',
+                    'placeholder':'crypto.creator'|trans,
                     'id':'inputSearchCreateur',
                 }
             }) }}
