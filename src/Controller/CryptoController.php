@@ -7,6 +7,7 @@ use App\Entity\Comment;
 use App\Form\CryptoType;
 use App\Form\CommentFormType;
 use App\Form\SearchFormType;
+use App\Form\ToggleFormType;
 use App\Events\CommentCreatedEvent;
 use App\Repository\CryptoRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -57,14 +58,19 @@ class CryptoController extends AbstractController
             $cryptos = $this->getDoctrine()
                 ->getRepository(Crypto::class)
                 ->findMultipleByFields($nom, $symbole, $categorie, $createur);
-            // TO-DO : Trouver une manière pour que la recherche soit faite avec n'importe quel paramètre
-
-
         }
+
+        $toggle = $this->createForm(ToggleFormType::class);
+        $toggle->handleRequest($request);
+
+        $mode = $toggle["mode"]->getData();
 
         return $this->render('crypto/index.html.twig', [
             'cryptos' => $cryptos,
-            'researchForm' => $form->createView()
+            'researchForm' => $form->createView(),
+            'toggleForm' => $toggle->createView(),
+            'mode' => $mode
+
         ]);
     }
 
@@ -235,6 +241,21 @@ class CryptoController extends AbstractController
         $em->remove($crypto);
         $em->flush();
         return $this->redirectToRoute('app_my_crypto');
+    }
+
+    /**
+     * @Route(
+     *     "/{_locale}",
+     *     name="theme",
+     *     requirements={
+     *         "_locale": "en|es|fr",
+     *     }
+     * )
+     */
+    public function changeTheme(Request $request): Response
+    {
+        return $this->redirect($request->getUri(), ['darkmode' => false]);
+
     }
 
 }

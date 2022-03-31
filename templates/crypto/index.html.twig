@@ -4,6 +4,10 @@
 
 {% block body %}
 
+    {% if mode == 1 %}
+        <link rel="stylesheet" href="https://bootswatch.com/5/slate/bootstrap.min.css">
+    {% endif %}
+
     <div class="container" style="display: inline; float: left; width: 75%;">
         <h1>{{'crypto.list'|trans}}</h1>
         {% if cryptos | length > 0 %}
@@ -91,8 +95,22 @@
             <a href="{{ path('app_crypto') }}" class="btn btn-danger" role="button">{{ 'form.cancel'|trans }}</a>
         </div>
 
+    </div>
+
+    <div class="container" style="display: inline; float: left; width: 23%; margin-left: 2%; margin-top: 1%;">
         {{ form_end(researchForm) }}
 
-    </div>
+        {{ form_start(toggleForm) }}
+        <div>
+            {{ form_widget(toggleForm.mode, {
+                attr: {'class':'switch-custom',
+                    'id':'toggle'}
+            }) }}
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">{{ 'Change mode'|trans }}</button>
+            </div>
+        </div>
+        {{ form_end(toggleForm) }}
+    <div>
 
 {% endblock %}
