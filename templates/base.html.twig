@@ -101,4 +101,12 @@
             {% block body %}{% endblock %}
         </div>
     </body>
+    <script>
+        function hideShow() {
+            const dropdownMenu = document.querySelector("#languages-dropdown");
+            if (dropdownMenu.className === "dropdown-menu show") {
+                alert("confirmado");
+            }
+        }
+    </script>
 </html>
