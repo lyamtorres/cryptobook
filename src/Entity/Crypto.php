@@ -72,6 +72,7 @@ class Crypto
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="cryptocurrency")
      */
     private $comments;
+
      /* @var \DateTime
      * @ORM\Column(type="datetime")
      */
@@ -235,6 +236,7 @@ class Crypto
             $this->comments[] = $comment;
             $comment->setCryptocurrency($this);
         }
+        return $this;
     }
     public function getDateMaj(): ?\DateTimeInterface
     {

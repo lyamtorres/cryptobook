@@ -12,7 +12,11 @@
         {# Render any errors for the "content" field (e.g. when a class property constraint failed) #}
         {{ form_errors(form.content) }}
 
-        {{ form_widget(form.content, {attr: {rows: 10}}) }}
+        {{ form_widget(form.content, {
+            attr: {rows: 10,
+                'style':'width:100%;'
+            }
+        }) }}
         {{ form_help(form.content) }}
     </div>
 

@@ -39,14 +39,32 @@ class CryptoController extends AbstractController
      *     }
      * )
      */
-    public function index(): Response
+    public function index(Request $request, CryptoRepository $cryptoRepository): Response
     {
         $cryptos = $this->getDoctrine()
             ->getRepository(Crypto::class)
             ->findAll();
 
+        $form = $this->createForm(SearchFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nom = $form["nom"]->getData();
+            $symbole = $form["symbole"]->getData();
+            $categorie = $form["categorie"]->getData();
+            $createur = $form["createur"]->getData();
+
+            $cryptos = $this->getDoctrine()
+                ->getRepository(Crypto::class)
+                ->findMultipleByFields($nom, $symbole, $categorie, $createur);
+            // TO-DO : Trouver une manière pour que la recherche soit faite avec n'importe quel paramètre
+
+
+        }
+
         return $this->render('crypto/index.html.twig', [
             'cryptos' => $cryptos,
+            'researchForm' => $form->createView()
         ]);
     }
 
@@ -180,34 +198,6 @@ class CryptoController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/search", name="crypto_search")
-     */
-    public function search(Request $request): Response
-    {
-        $form = $this->createForm(SearchFormType::class);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $nom = $form["nom"]->getData();
-            $symbole = $form["symbole"]->getData();
-            $categorie = $form["categorie"]->getData();
-            $createur = $form["createur"]->getData();
-
-            $cryptos = $this->getDoctrine()
-                ->getRepository(Crypto::class)
-                ->findMultipleByFields($nom, $symbole, $categorie, $createur);
-            // TO-DO : Trouver une manière pour que la recherche soit faite avec n'importe quel paramètre
-
-            return $this->render('crypto/index.html.twig', [
-                'cryptos' => $cryptos
-            ]);
-        }
-
-        return $this->render('crypto/search.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
      /**
      * @isGranted("ROLE_USER")
      * @Route("stage/{nom}/delete", name="delete_crypto")

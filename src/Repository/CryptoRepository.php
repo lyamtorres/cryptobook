@@ -66,12 +66,14 @@ class CryptoRepository extends ServiceEntityRepository
         }
 
         if ($categorie != null) {
-            $result->andWhere('c.categorie = :categorie')
+            $result
+                ->andWhere('c.categorie = :categorie')
                 ->setParameter('categorie', $categorie);
         }
 
         if ($createur != null) {
-            $result->andWhere('c.createur = :createur')
+            $result
+                ->andWhere('c.createur = :createur')
                 ->setParameter('createur', $createur);
         }
 

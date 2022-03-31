@@ -6,7 +6,7 @@ crypto.symbol: Symbole
 crypto.price: Prix
 crypto.category: Categorie
 crypto.quantity: Quantité
-crypto.date: Date
+crypto.date: 'Date de création'
 crypto.likes: 'J''aime'
 crypto.list: 'Liste des cryptomonnaies'
 crypto.mylist: 'Mes cryptomonnaies'

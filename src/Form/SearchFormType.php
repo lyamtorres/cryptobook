@@ -3,7 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Crypto;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,10 +15,20 @@ class SearchFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom')
-            ->add('symbole')
-            ->add('categorie')
-            ->add('createur')
+            ->add('nom', TextType::class, [
+                'required' => false
+            ])
+            ->add('symbole', TextType::class, [
+                'required' => false
+            ])
+            ->add('categorie', TextType::class, [
+                'required' => false
+            ])
+            ->add('createur', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'pseudo',
+                'required' => false
+            ])
         ;
     }
 

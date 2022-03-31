@@ -4,19 +4,67 @@
 
 {% block body %}
     <div class="container">
-        <h1>{{ crypto.nom }}</h1>
-        <h2>{{ crypto.createur }}</h2>
-        <br>
-        <ul>
-            <li>{{'crypto.symbol'|trans}} : {{ crypto.symbole }}</li>
-            <li>{{'crypto.price'|trans}} : {{ crypto.prix }}</li>
-            <li>{{'crypto.category'|trans}} : {{ crypto.categorie }}</li>
-            <li>{{'crypto.quantity'|trans}} : {{ crypto.quantite }}</li>
-            <li>Quantité maximale disponible : {{ crypto.quantiteMax }}</li>
-            <li>{{'crypto.date'|trans}} : {{ crypto.date|date("d/m/Y") }}</li>
-            <li>Date de dernière mise à jour : {{ crypto.dateMaj|date("d/m/Y") }}</li>
-            <li>{{'crypto.likes'|trans}} : {{ crypto.nbLikes }}</li>
-        </ul>
+        <div class="container" style="display: inline; float: left; width: 60%;">
+            <h1>{{ crypto.nom }}</h1>
+            <h2>{{ crypto.createur }}</h2>
+            <br>
+            <ul>
+                <li>{{'crypto.symbol'|trans}} : {{ crypto.symbole }}</li>
+                <li>{{'crypto.price'|trans}} : {{ crypto.prix }}</li>
+                <li>{{'crypto.category'|trans}} : {{ crypto.categorie }}</li>
+                <li>{{'crypto.quantity'|trans}} : {{ crypto.quantite }}</li>
+                <li>Quantité maximale disponible : {{ crypto.quantiteMax }}</li>
+                <li>{{'crypto.date'|trans}} : {{ crypto.date|date("d/m/Y") }}</li>
+                <li>Date de dernière mise à jour : {{ crypto.dateMaj|date("d/m/Y") }}</li>
+                <li>{{'crypto.likes'|trans}} : {{ crypto.nbLikes }}</li>
+            </ul>
+
+            <div id="post-add-comment" class="well">
+                {# The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered
+                their credentials (login + password) during this session. If they
+                are automatically logged via the 'Remember Me' functionality, they won't
+                be able to add a comment.
+                See https://symfony.com/doc/current/security/remember_me.html#forcing-the-user-to-re-authenticate-before-accessing-certain-resources
+                #}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {{ render(controller('App\\Controller\\CryptoController::commentForm', {'id': crypto.id})) }}
+                {% else %}
+                    <p>
+                        <a class="btn btn-success" href="{{ path('app_login', {'redirect_to': app.request.pathInfo}) }}">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
+                        </a>
+                        {{ 'post.to_publish_a_comment'|trans }}
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="container" style="display: inline; float: left; width: 38%; margin-left: 2%; margin-top: 6%; border-radius: 5% 5%; border: 3px groove #575a5c;">
+            <h3>Commentaires</h3>
+            {% for comment in crypto.comments %}
+                <div class="row post-comment">
+                    <a name="comment_{{ comment.id }}"></a>
+                    <h4 class="col-sm-3">
+                        <hr>
+                        <strong>{{ comment.author.pseudo }}</strong><br>
+                        {{ 'post.commented_on'|trans }}
+                        {# it's not mandatory to set the timezone in localizeddate(). This is done to
+                           avoid errors when the 'intl' PHP extension is not available and the application
+                           is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
+                        {{ comment.publishedAt|format_datetime() }}
+                    </h4>
+                    <div class="col-sm-9">
+                        {{ comment.content }}
+                    </div>
+                </div>
+            {% else %}
+                <div class="post-comment">
+                    <p>{{ 'post.no_comments'|trans }}</p>
+                </div>
+            {% endfor %}
+            <hr>
+        </div>
     </div>
 
     <div id="post-add-comment" class="well">
