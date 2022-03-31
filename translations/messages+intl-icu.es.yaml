@@ -7,9 +7,18 @@ crypto.price: Precio
 crypto.category: Categoría
 crypto.quantity: Cantidad
 crypto.date: Fecha
-crypto.likes: Me gusta
-crypto.list: Lista de criptomonedas
+crypto.likes: 'Me gusta'
+crypto.list: 'Lista de criptomonedas'
 crypto.name: Nombre
 crypto.creator: Creador
 crypto.favorites: Favoritos
-more: Ver más
+more: 'Ver más'
+crypto.add: Agregar
+crypto.personal: Cartera
+logout: Salir
+title.add_comment: Añadir un comentario
+action.publish_comment: Publicar comentario
+title.comment_error: __title.comment_error
+action.sign_in: Iniciar sesión
+post.to_publish_a_comment: Inicia sesión para publicar un comentario.
+post.commented_on: Comentado el

@@ -1,38 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste de Cryptomonnaies{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <link rel="stylesheet" href="https://bootswatch.com/5/yeti/bootstrap.min.css">
 
-    <div class="container">
+    <div class="example-wrapper">
         <h1>{{'crypto.list'|trans}}</h1>
         <table class="table">
             <thead>
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">{{'crypto.name'|trans}}</th>
                 <th scope="col">{{'crypto.creator'|trans}}</th>
                 <th scope="col">{{'crypto.quantity'|trans}}</th>
                 <th scope="col">{{'crypto.likes'|trans}}</th>
-                <th scope="col">{{'crypto.favorites'|trans}}</th>
+                {% if app.user %}
+                    <th scope="col">{{'crypto.favorites'|trans}}</th>
+                {% endif %}
             </tr>
             </thead>
             <tbody>
             {% for crypto in cryptos %}
             <tr>
-                <th scope="row">1</th>
-                <td>{{ crypto.nom }}</td>
-                <td>Satoshi Nakamoto</td>
+                <td><a href="{{ path('crypto_info', {nom: crypto.nom}) }}">{{ crypto.nom }}</a></td>
+                <td>{{ crypto.createur }}</td>
                 <td>{{ crypto.quantite }}</td>
                 <td>{{ crypto.nbLikes }}</td>
-                <td>⭐</td>
-                <td><a href="{{ path('crypto_info', {nom: crypto.nom}) }}">{{'more'|trans}}</a></td>
+                {% if app.user %}
+                    <td>⭐</td>
+                {% endif %}
             </tr>
             {% endfor %}
             </tbody>
         </table>
     </div>
+
 {% endblock %}
-
-

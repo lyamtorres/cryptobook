@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <br>
+    <h1>Rechercher une cryptomonnaie</h1>
+
+    {{ form_start(form) }}
+    <div class="form-group">
+        {{ form_label(form.nom, 'Nom :', {
+            label_attr: {'for':'inputName'}
+        }) }}
+        {{ form_widget(form.nom, {
+            attr: {'class':'form-control',
+                'id':'inputName',
+                'autofocus':'true'}
+        }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.symbole, 'Symbole :', {
+            label_attr: {'for':'inputSymbole'}
+        }) }}
+        {{ form_widget(form.symbole, {
+            attr: {'class':'form-control',
+                'id':'inputSymbole'}
+        }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.categorie, 'Catégorie :', {
+            label_attr: {'for':'inputCategorie'}
+        }) }}
+        {{ form_widget(form.categorie, {
+            attr: {'class':'form-control',
+                'id':'inputCategorie'}
+        }) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.createur, 'Créateur :', {
+            label_attr: {'for':'inputCreateur'}
+        }) }}
+        {{ form_widget(form.createur, {
+            attr: {'class':'form-control',
+                'id':'inputCreateur'}
+        }) }}
+    </div>
+    {{ form_widget(form) }}
+    <br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Chercher</button>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -8,8 +8,17 @@ crypto.category: Category
 crypto.quantity: Quantity
 crypto.date: Date
 crypto.likes: Likes
-crypto.list: List of Cryptocurrencies
+crypto.list: 'List of Cryptocurrencies'
 crypto.name: Name
 crypto.creator: Creator
 crypto.favorites: Favorites
-more: See more
+more: 'See more'
+crypto.add: Add
+crypto.personal: Wallet
+logout: Logout
+title.add_comment: Add a comment
+action.publish_comment: Post comment
+title.comment_error: __title.comment_error
+action.sign_in: Sign in
+post.to_publish_a_comment: Sign in to post a comment.
+post.commented_on: Commented the
