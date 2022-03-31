@@ -14,13 +14,13 @@
         </div>
     {% endif %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <h4><label for="inputEmail">Email</label></h4>
+    <h1 class="h3 mb-3 font-weight-normal">{{ 'form.login'|trans }}</h1>
+    <h4><label for="inputEmail">{{ 'email'|trans }}</label></h4>
     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
-           autocomplete="email" placeholder="Entrer votre mail" required autofocus>
-    <label for="inputPassword">Password</label>
+           autocomplete="email" placeholder="jkazama@hotmail.com" required autofocus>
+    <label for="inputPassword">{{ 'password'|trans }}</label>
     <input type="password" name="password" id="inputPassword" class="form-control"
-           autocomplete="current-password" placeholder="Entrer votre mot de passe" required>
+           autocomplete="current-password" placeholder="a123456*" required>
 
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
@@ -38,7 +38,7 @@
     #}
 
     <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
+        {{ 'form.button.login'|trans }}
     </button>
 </form>
 {% endblock %}

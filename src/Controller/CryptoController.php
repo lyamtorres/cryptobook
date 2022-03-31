@@ -83,7 +83,13 @@ class CryptoController extends AbstractController
 
     /**
      * @isGranted("ROLE_USER")
-     * @Route("/my_cryptos", name="app_my_crypto")
+     * @Route(
+     *     "/{_locale}/my_cryptos",
+     *     name="app_my_crypto",
+     *     requirements={
+     *         "_locale": "en|es|fr",
+     *     }
+     * )
      */
     public function myCryptosShow(): Response
     {
@@ -100,6 +106,13 @@ class CryptoController extends AbstractController
      * Créer une nouvelle crypto
      * @isGranted("ROLE_USER")
      * @Route("/new", name="new_crypto")
+     * @Route(
+     *     "/{_locale}/new",
+     *     name="new_crypto",
+     *     requirements={
+     *         "_locale": "en|es|fr",
+     *     }
+     * )
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response

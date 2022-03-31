@@ -2,19 +2,19 @@
 
 {% block body %}
     <div style="float: right;">
-        <u>Vous êtes ici :</u> Accueil > Création d'une cryptomonnaie
+        <u>Vous êtes ici :</u> Accueil > {{ 'crypto.creation'|trans }}
     </div>
 
-    <h1>Création d'une cryptommonaie :</h1>
+    <h1>{{ 'crypto.creation'|trans }}</h1>
 
     {{ form_start(form) }}
     <div class="form-group">
-        {{ form_label(form.nom, 'Nom :', {
+        {{ form_label(form.nom, 'crypto.name'|trans, {
             label_attr: {'for':'inputName'}
         }) }}
         {{ form_widget(form.nom, {
             attr: {'class':'form-control',
-                'placeholder':'Nom de la cryptomonnaie',
+                'placeholder':'Bitcoin',
                 'id':'inputName',
                 'required':'true',
                 'autofocus':'true'}
@@ -22,61 +22,61 @@
         {{ form_errors(form.nom) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.symbole, 'Symbole :', {
+        {{ form_label(form.symbole, 'crypto.symbol'|trans, {
             label_attr: {'for':'inputSymbole'}
         }) }}
         {{ form_widget(form.symbole, {
             attr: {'class':'form-control',
-                'placeholder':'Symbole de la cryptomonnaie',
+                'placeholder':'BTC',
                 'id':'inputSymbole',
                 'required':'true'}
         }) }}
         {{ form_errors(form.symbole) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.prix, 'Prix :', {
+        {{ form_label(form.prix, 'crypto.price'|trans, {
             label_attr: {'for':'inputPrix'}
         }) }}
         {{ form_widget(form.prix, {
             attr: {'class':'form-control',
-                'placeholder':'Prix de la cryptomonnaie',
+                'placeholder':'41746',
                 'id':'inputPrix',
                 'required':'true'}
         }) }}
         {{ form_errors(form.prix) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.categorie, 'Catégorie :', {
+        {{ form_label(form.categorie, 'crypto.category'|trans, {
             label_attr: {'for':'inputCategorie'}
         }) }}
         {{ form_widget(form.categorie, {
             attr: {'class':'form-control',
-                'placeholder':'Catégorie de la cryptomonnaie',
+                'placeholder':'Coin',
                 'id':'inputCategorie',
                 'required':'true'}
         }) }}
         {{ form_errors(form.categorie) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.quantite, 'Quantité :', {
+        {{ form_label(form.quantite, 'crypto.quantity'|trans, {
             label_attr: {'for':'inputQuantite'}
         }) }}
         {{ form_widget(form.quantite, {
             attr: {'class':'form-control',
-                'placeholder':'Quantité de la cryptomonnaie',
+                'placeholder':'500',
                 'id':'inputQuantite',
                 'required':'true'}
         }) }}
         {{ form_errors(form.quantite) }}
     </div>
     <div class="form-group">
-        {{ form_label(form.quantiteMax, 'Quantité maximale :', {
+        {{ form_label(form.quantiteMax, 'crypto.max'|trans, {
             label_attr: {'for':'inputQuantiteMax'}
         }) }}
         {{ form_widget(form.quantiteMax, {
             attr: {'class':'form-control',
                 'type':'number',
-                'placeholder':'Quantité maximale disponible de la cryptomonnaie',
+                'placeholder':'21000000',
                 'id':'inputQuantiteMax',
                 'required':'true'
                 }
@@ -86,8 +86,8 @@
     {{ form_widget(form) }}
 
     <div class="form-group">
-        <button type="submit" class="btn btn-success">Enregistrer</button>
-        <a href="{{ path('app_my_crypto') }}" class="btn btn-danger" role="button">Annuler</a>
+        <button type="submit" class="btn btn-success">{{ 'form.save'|trans }}</button>
+        <a href="{{ path('app_my_crypto') }}" class="btn btn-danger" role="button">{{ 'form.cancel'|trans }}</a>
     </div>
     {{ form_end(form) }}
 {% endblock %}

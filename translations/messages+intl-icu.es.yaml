@@ -16,9 +16,28 @@ more: 'Ver más'
 crypto.add: 'Agregar una criptomoneda'
 crypto.personal: Cartera
 logout: Salir
-title.add_comment: Añadir un comentario
-action.publish_comment: Publicar comentario
+title.add_comment: 'Añadir un comentario'
+action.publish_comment: 'Publicar comentario'
 title.comment_error: __title.comment_error
-action.sign_in: Iniciar sesión
-post.to_publish_a_comment: Inicia sesión para publicar un comentario.
-post.commented_on: Comentado el
+action.sign_in: 'Iniciar sesión'
+post.to_publish_a_comment: 'Inicia sesión para publicar un comentario.'
+post.commented_on: 'Comentado el'
+post.no_comments: No hay ningún comentario por el momento.
+crypto.mylist: 'Mis criptomonedas'
+filters: Filtros
+form.apply: Aplicar
+form.cancel: Anular
+form.save: Guardar
+crypto.creation: 'Agregar una criptomoneda'
+crypto.max: 'Límite de suministro'
+search.crypto: __search.crypto
+form.edit: Editar
+form.delete: Borrar
+register: 'Crear una nueva cuenta'
+username: 'Nombre de usuario'
+email: 'Correo electrónico'
+password: Contraseña
+form.register: Registrarse
+form.login: Por favor iniciar sesión
+form.button.login: Iniciar sesión
+comments: Comentarios
