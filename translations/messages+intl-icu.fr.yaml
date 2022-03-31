@@ -23,4 +23,6 @@ title.comment_error: __title.comment_error
 action.sign_in: Se connecter
 post.to_publish_a_comment: Connectez-vous pour publier un commentaire.
 post.commented_on: Commenté le
+post.no_comments: Aucun commentaire
+post.cant_see_comments: Veuillez vous connecter pour voir les commentaires
 search: Recherche
