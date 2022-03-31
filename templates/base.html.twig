@@ -56,6 +56,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_crypto') }}">{{'home'|trans}}</a>
                         </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="{{ path('crypto_search') }}">{{'search'|trans}}</a>
+                        </li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
@@ -101,12 +104,4 @@
             {% block body %}{% endblock %}
         </div>
     </body>
-    <script>
-        function hideShow() {
-            const dropdownMenu = document.querySelector("#languages-dropdown");
-            if (dropdownMenu.className === "dropdown-menu show") {
-                alert("confirmado");
-            }
-        }
-    </script>
 </html>
