@@ -2,10 +2,10 @@
 
 {% block body %}
     <div style="float: right;">
-        <u>{{ 'direction'|trans }} :</u> {{'home'|trans}} > {{ 'crypto.creation'|trans }}
+        <u>{{ 'direction'|trans }} :</u> {{'home'|trans}} > {{ 'crypto.edition'|trans }}
     </div>
 
-    <h1>{{ 'crypto.creation'|trans }}</h1>
+    <h1>{{ 'crypto.edition'|trans }} :</h1>
 
     {{ form_start(form) }}
     <div class="form-group">
@@ -79,7 +79,7 @@
                 'placeholder':'21000000',
                 'id':'inputQuantiteMax',
                 'required':'true'
-                }
+            }
         }) }}
         {{ form_errors(form.quantiteMax) }}
     </div>

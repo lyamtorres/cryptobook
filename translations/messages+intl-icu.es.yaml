@@ -41,3 +41,11 @@ form.register: Registrarse
 form.login: Por favor iniciar sesión
 form.button.login: Iniciar sesión
 comments: Comentarios
+
+direction:
+crypto.maxQuantity:
+crypto.lastUpdate:
+crypto.edition:
+avertissement:
+warning:
+

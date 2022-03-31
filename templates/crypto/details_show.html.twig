@@ -4,6 +4,11 @@
 
 {% block body %}
     <div class="container">
+        {% set current_path = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|split('/') %}
+        <div style="float: right;">
+            <u>{{ 'direction'|trans }} :</u> {{'home'|trans}} > {{ current_path[3] }}
+        </div>
+
         <div class="container" style="display: inline; float: left; width: 60%;">
             <h1>{{ crypto.nom }}</h1>
             <h2>{{ crypto.createur }}</h2>
@@ -13,11 +18,13 @@
                 <li>{{'crypto.price'|trans}} : {{ crypto.prix }}</li>
                 <li>{{'crypto.category'|trans}} : {{ crypto.categorie }}</li>
                 <li>{{'crypto.quantity'|trans}} : {{ crypto.quantite }}</li>
-                <li>Quantité maximale disponible : {{ crypto.quantiteMax }}</li>
+                <li>{{'crypto.maxQuantity'|trans}} : {{ crypto.quantiteMax }}</li>
                 <li>{{'crypto.date'|trans}} : {{ crypto.date|date("d/m/Y") }}</li>
-                <li>Date de dernière mise à jour : {{ crypto.dateMaj|date("d/m/Y") }}</li>
+                <li>{{'crypto.lastUpdate'|trans}} : {{ crypto.dateMaj|date("d/m/Y") }}</li>
                 <li>{{'crypto.likes'|trans}} : {{ crypto.nbLikes }}</li>
             </ul>
+
+            <hr>
 
             <div id="post-add-comment" class="well">
                 {# The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered
@@ -29,39 +36,41 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {{ render(controller('App\\Controller\\CryptoController::commentForm', {'id': crypto.id})) }}
                 {% else %}
-                    <p>
-                        <a class="btn btn-success" href="{{ path('app_login', {'redirect_to': app.request.pathInfo}) }}">
-                            <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
-                        </a>
-                        {{ 'post.to_publish_a_comment'|trans }}
-                    </p>
+                    <p>{{ 'post.to_publish_a_comment'|trans }}</p>
+                    <a class="btn btn-success" href="{{ path('app_login', {'redirect_to': app.request.pathInfo}) }}">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i> {{ 'action.sign_in'|trans }}
+                    </a>
                 {% endif %}
             </div>
         </div>
 
-        <div class="container" style="display: inline; float: left; width: 38%; margin-left: 2%; margin-top: 6%; border-radius: 5% 5%; border: 3px groove #575a5c;">
+        <div class="container" style="display: inline; float: left; width: 38%; margin-left: 2%; margin-top: 6%; border-radius: 5% 5%; border: 3px groove #898989;">
             <h3>{{ 'comments'|trans }}</h3>
-            {% for comment in crypto.comments %}
-                <div class="row post-comment">
-                    <a name="comment_{{ comment.id }}"></a>
-                    <h4 class="col-sm-3">
-                        <hr>
-                        <strong>{{ comment.author.pseudo }}</strong><br>
-                        {{ 'post.commented_on'|trans }}
-                        {# it's not mandatory to set the timezone in localizeddate(). This is done to
-                           avoid errors when the 'intl' PHP extension is not available and the application
-                           is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
-                        {{ comment.publishedAt|format_datetime() }}
-                    </h4>
-                    <div class="col-sm-9">
-                        {{ comment.content }}
-                    </div>
-                </div>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    {% for comment in crypto.comments %}
+                        <div class="row post-comment">
+                            <a name="comment_{{ comment.id }}"></a>
+                            <h4 class="col-sm-3">
+                                <hr>
+                                <strong>{{ comment.author.pseudo }}</strong><br>
+                                {{ 'post.commented_on'|trans }}
+                                {# it's not mandatory to set the timezone in localizeddate(). This is done to
+                                   avoid errors when the 'intl' PHP extension is not available and the application
+                                   is forced to use the limited "intl polyfill", which only supports UTC and GMT #}
+                                {{ comment.publishedAt|format_datetime() }}
+                            </h4>
+                            <div class="col-sm-9">
+                                {{ comment.content }}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="post-comment">
+                            <p>{{ 'post.no_comments'|trans }}</p>
+                        </div>
+                    {% endfor %}
             {% else %}
-                <div class="post-comment">
-                    <p>{{ 'post.no_comments'|trans }}</p>
-                </div>
-            {% endfor %}
+                <p>{{ 'post.cant_see_comments'|trans }}</p>
+            {% endif %}
             <hr>
         </div>
     </div>

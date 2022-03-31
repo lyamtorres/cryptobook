@@ -114,7 +114,6 @@ class CryptoController extends AbstractController
     /**
      * Créer une nouvelle crypto
      * @isGranted("ROLE_USER")
-     * @Route("/new", name="new_crypto")
      * @Route(
      *     "/{_locale}/new",
      *     name="new_crypto",
@@ -148,7 +147,12 @@ class CryptoController extends AbstractController
     }
 
     /**
-     * @Route("/comment/{cryptoName}/new", methods={"POST"}, name="comment_new")
+     * @Route("/{_locale}/comment/{cryptoName}/new",
+     *     methods={"POST"},
+     *     name="comment_new",
+     *     requirements={
+     *         "_locale": "en|es|fr",
+     *     })
      * @ParamConverter("crypto", options={"mapping": {"cryptoName" : "nom"}})
      * @isGranted("ROLE_USER")
      */
@@ -179,7 +183,11 @@ class CryptoController extends AbstractController
     }
      /**
      * @isGranted("ROLE_USER")
-     * @Route("my_cryptos/{nom}/edit", name="edit_crypto")
+     * @Route("{_locale}/my_cryptos/{nom}/edit",
+      *     name="edit_crypto",
+      *     requirements={
+      *         "_locale": "en|es|fr",
+      *     })
      * @param Request $request
      * @param EntityManagerInterface $em
      * @return RedirectResponse|Response
@@ -194,7 +202,7 @@ class CryptoController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('app_my_crypto');
         }
-        return $this->render('crypto/create.html.twig', [
+        return $this->render('crypto/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -219,7 +227,11 @@ class CryptoController extends AbstractController
 
      /**
      * @isGranted("ROLE_USER")
-     * @Route("stage/{nom}/delete", name="delete_crypto")
+     * @Route("{_locale}/crytpo/{nom}/delete",
+      *     name="delete_crypto",
+      *     requirements={
+      *         "_locale": "en|es|fr",
+      *     })
      * @param Request $request
      * @param Crypto $crypto
      * @param EntityManagerInterface $em

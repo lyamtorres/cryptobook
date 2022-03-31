@@ -5,36 +5,48 @@
 {% block body %}
 
     <div class="example-wrapper">
+        <div style="float: right;">
+            <u>{{ 'direction'|trans }} :</u> {{ 'home'|trans }} > {{ 'crypto.mylist'|trans }}
+        </div>
+
         <h1>{{'crypto.mylist'|trans}}</h1>
-        <table class="table text-center">
-            <thead>
-            <tr>
-                <th class="active text-center" scope="col">{{'crypto.name'|trans}}</th>
-                <th class="active text-center" scope="col">{{'crypto.creator'|trans}}</th>
-                <th class="active text-center" scope="col">{{'crypto.quantity'|trans}}</th>
-                <th class="active text-center" scope="col">{{'crypto.likes'|trans}}</th>
-                {% if app.user %}
-                    <th class="active text-center" scope="col">{{'crypto.favorites'|trans}}</th>
-                    <th class="active text-center" scope="col"></th>
-                {% endif %}
-            </tr>
-            </thead>
-            <tbody>
-            {% for crypto in cryptos %}
+        {% if cryptos is empty %}
+            <h3>Aucune cryptommonaie ajoutée</h3>
+            Souhaitez vous en créer une ? <br>
+            <a href="{{ path('new_crypto') }}"><button type="button" class="btn btn-primary btn-sm">Créer une cryptomonnaie</button></a>
+        {% else %}
+            <table class="table text-center">
+                <thead>
                 <tr>
-                    <td><a href="{{ path('crypto_info', {nom: crypto.nom}) }}">{{ crypto.nom }}</a></td>
-                    <td>{{ crypto.createur }}</td>
-                    <td>{{ crypto.quantite }}</td>
-                    <td>{{ crypto.nbLikes }}</td>
+                    <th class="active text-center" scope="col">{{'crypto.name'|trans}}</th>
+                    <th class="active text-center" scope="col">{{'crypto.creator'|trans}}</th>
+                    <th class="active text-center" scope="col">{{'crypto.quantity'|trans}}</th>
+                    <th class="active text-center" scope="col">{{'crypto.likes'|trans}}</th>
                     {% if app.user %}
-                        <td>⭐</td>
-                        <td><a href="{{ path('edit_crypto', {nom: crypto.nom}) }}"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> {{ 'form.edit'|trans }}</button></a>
-                            <a href="{{ path('delete_crypto', {nom: crypto.nom}) }}"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> {{ 'form.delete'|trans }}</button></a></td>
+                        <th class="active text-center" scope="col">{{'crypto.favorites'|trans}}</th>
+                        <th class="active text-center" scope="col"></th>
                     {% endif %}
                 </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                {% for crypto in cryptos %}
+                    <tr>
+                        <td><a href="{{ path('crypto_info', {nom: crypto.nom}) }}">{{ crypto.nom }}</a></td>
+                        <td>{{ crypto.createur }}</td>
+                        <td>{{ crypto.quantite }}</td>
+                        <td>{{ crypto.nbLikes }}</td>
+                        {% if app.user %}
+                            <td>⭐</td>
+                            <td><a href="{{ path('edit_crypto', {nom: crypto.nom}) }}"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                        {{'form.edit'|trans}}</button></a>
+                                <a href="{{ path('delete_crypto', {nom: crypto.nom}) }}"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        {{'form.delete'|trans}}</button></a></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
     </div>
 
 
