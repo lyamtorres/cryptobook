@@ -3,16 +3,16 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1>{{ 'register'|trans }}</h1>
 
     {{ form_start(registrationForm) }}
         <div class="form-group">
-            {{ form_label(registrationForm.email, 'Pseudo', {
+            {{ form_label(registrationForm.email, 'username'|trans, {
                 label_attr: {'for':'inputPseudo'}
             }) }}
             {{ form_widget(registrationForm.pseudo, {
                 attr: {'class':'form-control',
-                    'placeholder':'Entrer un pseudo',
+                    'placeholder':'jinkazama',
                     'id':'inputPseudo',
                     'required':'true',
                     'autofocus':'true'}
@@ -20,24 +20,24 @@
             {{ form_errors(registrationForm.pseudo) }}
         </div>
         <div class="form-group">
-            {{ form_label(registrationForm.email, 'E-mail', {
+            {{ form_label(registrationForm.email, 'email'|trans, {
                 label_attr: {'for':'inputEmail'}
             }) }}
             {{ form_widget(registrationForm.email, {
                 attr: {'class':'form-control',
-                    'placeholder':'Entrer votre adresse mail',
+                    'placeholder':'jkazama@hotmail.com',
                     'id':'inputEmail',
                     'required':'true'}
             }) }}
             {{ form_errors(registrationForm.email) }}
         </div>
         <div class="form-group">
-            {{ form_label(registrationForm.email, 'Mot de passe', {
+            {{ form_label(registrationForm.email, 'password'|trans, {
                 label_attr: {'for':'inputPassword'}
             }) }}
             {{ form_widget(registrationForm.plainPassword, {
                 attr: {'class':'form-control',
-                    'placeholder':'Entrer votre mot de passe',
+                    'placeholder':'a123456*',
                     'id':'inputPassword',
                     'required':'true'}
             }) }}
@@ -47,6 +47,6 @@
         <div class="form-check">
             {{ form_row(registrationForm.agreeTerms, {label_attr: {class: 'form-check-label'}}) }}
         </div>
-        <button type="submit" class="btn btn-success">Register</button>
+        <button type="submit" class="btn btn-success">{{ 'form.register'|trans }}</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

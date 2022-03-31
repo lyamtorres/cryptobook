@@ -4,7 +4,7 @@ registration: Inscription
 login: Connexion
 crypto.symbol: Symbole
 crypto.price: Prix
-crypto.category: Categorie
+crypto.category: Catégorie
 crypto.quantity: Quantité
 crypto.date: 'Date de création'
 crypto.likes: 'J''aime'
@@ -17,10 +17,28 @@ more: 'Voir plus'
 crypto.add: 'Ajouter une crypto'
 crypto.personal: Portefeuille
 logout: Déconnexion
-title.add_comment: Ajouter un commentaire
-action.publish_comment: Publier commentaire
+title.add_comment: 'Ajouter un commentaire'
+action.publish_comment: 'Publier commentaire'
 title.comment_error: __title.comment_error
-action.sign_in: Se connecter
-post.to_publish_a_comment: Connectez-vous pour publier un commentaire.
-post.commented_on: Commenté le
+action.sign_in: 'Se connecter'
+post.to_publish_a_comment: 'Connectez-vous pour publier un commentaire.'
+post.commented_on: 'Commenté le'
 search: Recherche
+post.no_comments: Il n'y a pas de commentaires pour le moment.
+filters: Filtres
+form.apply: Appliquer
+form.cancel: Annuler
+form.save: Enregistrer
+crypto.creation: 'Ajouter une cryptomonnaie'
+crypto.max: 'Limite d''approvisionnement'
+search.crypto: __search.crypto
+form.edit: Éditer
+form.delete: Supprimer
+register: 'Créer un nouveau compte'
+username: 'Nom d''utilisateur'
+email: E-mail
+password: 'Mot de passe'
+form.register: S'inscrire
+form.login: Veuillez vous connecter
+form.button.login: Se connecter
+comments: Commentaires

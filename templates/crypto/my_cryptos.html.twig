@@ -28,8 +28,8 @@
                     <td>{{ crypto.nbLikes }}</td>
                     {% if app.user %}
                         <td>⭐</td>
-                        <td><a href="{{ path('edit_crypto', {nom: crypto.nom}) }}"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editer</button></a>
-                            <a href="{{ path('delete_crypto', {nom: crypto.nom}) }}"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Supprimer</button></a></td>
+                        <td><a href="{{ path('edit_crypto', {nom: crypto.nom}) }}"><button type="button" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> {{ 'form.edit'|trans }}</button></a>
+                            <a href="{{ path('delete_crypto', {nom: crypto.nom}) }}"><button type="button" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> {{ 'form.delete'|trans }}</button></a></td>
                     {% endif %}
                 </tr>
             {% endfor %}
