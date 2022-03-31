@@ -172,7 +172,7 @@ class CryptoController extends AbstractController
             $em->flush();
             return $this->redirectToRoute('app_my_crypto');
         }
-        return $this->render('crypto/create.html.twig', [
+        return $this->render('crypto/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -195,6 +195,28 @@ class CryptoController extends AbstractController
         ]);
     }
 
+    /**
+     * This controller is called directly via the render() function in the
+     * blog/post_show.html.twig template. That's why it's not needed to define
+     * a route name for it.
+     *
+     * The "id" of the Post is passed in and then turned into a Post object
+     * automatically by the ParamConverter.
+     */
+    public function myCommentForm(Crypto $crypto): Response
+    {
+        $form = $this->createForm(MyCommentFormType::class);
+
+        $comments = $this->getDoctrine()
+            ->getRepository(Comment::class)
+            ->findBy(array('author' => $this->getUser()));
+
+        return $this->render('crypto/details_show.html.twig', [
+            'crypto' => $crypto,
+            'formMyComments' => $form->createView(),
+            'comments' => $comments
+        ]);
+    }
 
      /**
      * @isGranted("ROLE_USER")

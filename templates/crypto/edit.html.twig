@@ -2,10 +2,10 @@
 
 {% block body %}
     <div style="float: right;">
-        <u>Vous êtes ici :</u> Accueil > Création d'une cryptomonnaie
+        <u>Vous êtes ici :</u> Accueil > Edition d'une cryptomonnaie
     </div>
 
-    <h1>Création d'une cryptommonaie :</h1>
+    <h1>Edition d'une cryptommonaie :</h1>
 
     {{ form_start(form) }}
     <div class="form-group">
@@ -79,7 +79,7 @@
                 'placeholder':'Quantité maximale disponible de la cryptomonnaie',
                 'id':'inputQuantiteMax',
                 'required':'true'
-                }
+            }
         }) }}
         {{ form_errors(form.quantiteMax) }}
     </div>

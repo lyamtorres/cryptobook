@@ -4,6 +4,11 @@
 
 {% block body %}
     <div class="container">
+        {% set current_path = path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|split('/') %}
+        <div style="float: right;">
+            <u>Vous êtes ici :</u> Accueil > {{ current_path[3] }}
+        </div>
+
         <div class="container" style="display: inline; float: left; width: 60%;">
             <h1>{{ crypto.nom }}</h1>
             <h2>{{ crypto.createur }}</h2>
