@@ -45,6 +45,41 @@ class CryptoRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @throws ORMException
+     * @throws OptimisticLockException
+     */
+    public function findMultipleByFields($nom, $symbole, $categorie, $createur)
+    {
+        $result = $this->createQueryBuilder('c');
+
+        if ($nom != null) {
+            $result
+                ->andWhere('c.nom = :nom')
+                ->setParameter('nom', $nom);
+        }
+
+        if ($symbole != null) {
+            $result
+                ->andWhere('c.symbole = :symbole')
+                ->setParameter('symbole', $symbole);
+        }
+
+        if ($categorie != null) {
+            $result
+                ->andWhere('c.categorie = :categorie')
+                ->setParameter('categorie', $categorie);
+        }
+
+        if ($createur != null) {
+            $result
+                ->andWhere('c.createur = :createur')
+                ->setParameter('createur', $createur);
+        }
+
+        return $result->getQuery()->getResult();
+    }
+
     // /**
     //  * @return Crypto[] Returns an array of Crypto objects
     //  */

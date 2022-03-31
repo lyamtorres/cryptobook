@@ -16,3 +16,9 @@ more: 'Ver más'
 crypto.add: 'Agregar una criptomoneda'
 crypto.personal: Cartera
 logout: Salir
+title.add_comment: Añadir un comentario
+action.publish_comment: Publicar comentario
+title.comment_error: __title.comment_error
+action.sign_in: Iniciar sesión
+post.to_publish_a_comment: Inicia sesión para publicar un comentario.
+post.commented_on: Comentado el

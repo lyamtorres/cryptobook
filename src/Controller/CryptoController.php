@@ -3,10 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Crypto;
+use App\Entity\Comment;
 use App\Form\CryptoType;
+use App\Form\CommentFormType;
+use App\Form\SearchFormType;
+use App\Events\CommentCreatedEvent;
+use App\Repository\CryptoRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -32,14 +39,32 @@ class CryptoController extends AbstractController
      *     }
      * )
      */
-    public function index(): Response
+    public function index(Request $request, CryptoRepository $cryptoRepository): Response
     {
         $cryptos = $this->getDoctrine()
             ->getRepository(Crypto::class)
             ->findAll();
 
+        $form = $this->createForm(SearchFormType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $nom = $form["nom"]->getData();
+            $symbole = $form["symbole"]->getData();
+            $categorie = $form["categorie"]->getData();
+            $createur = $form["createur"]->getData();
+
+            $cryptos = $this->getDoctrine()
+                ->getRepository(Crypto::class)
+                ->findMultipleByFields($nom, $symbole, $categorie, $createur);
+            // TO-DO : Trouver une manière pour que la recherche soit faite avec n'importe quel paramètre
+
+
+        }
+
         return $this->render('crypto/index.html.twig', [
             'cryptos' => $cryptos,
+            'researchForm' => $form->createView()
         ]);
     }
 
@@ -95,6 +120,7 @@ class CryptoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($crypto);
             $em->flush();
+          
             return $this->redirectToRoute('app_my_crypto');
         }
         return $this->render('crypto/create.html.twig', [
@@ -103,7 +129,36 @@ class CryptoController extends AbstractController
     }
 
     /**
-     * Éditer une cryptomonnaie.
+     * @Route("/comment/{cryptoName}/new", methods={"POST"}, name="comment_new")
+     * @ParamConverter("crypto", options={"mapping": {"cryptoName" : "nom"}})
+     * @isGranted("ROLE_USER")
+     */
+    public function commentNew(Request $request, Crypto $crypto, EventDispatcherInterface $eventDispatcher): Response
+    {
+        $comment = new Comment();
+        $comment->setAuthor($this->getUser());
+        $comment->setCryptocurrency($crypto);
+        $comment->setPublishedAt(new \DateTimeImmutable('now'));
+        $crypto->addComment($comment);
+
+        $form = $this->createForm(CommentFormType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+
+            $eventDispatcher->dispatch(new CommentCreatedEvent($comment));
+
+            return $this->redirectToRoute('crypto_info', ['nom' => $crypto->getNom()]);
+        }
+
+        return $this->render('blog/comment_form_error.html.twig', [
+            'crypto' => $crypto,
+        ]);
+    }
+     /**
      * @isGranted("ROLE_USER")
      * @Route("my_cryptos/{nom}/edit", name="edit_crypto")
      * @param Request $request
@@ -126,7 +181,24 @@ class CryptoController extends AbstractController
     }
 
     /**
-     * Supprimer une cryptomonnaie.
+     * This controller is called directly via the render() function in the
+     * blog/post_show.html.twig template. That's why it's not needed to define
+     * a route name for it.
+     *
+     * The "id" of the Post is passed in and then turned into a Post object
+     * automatically by the ParamConverter.
+     */
+    public function commentForm(Crypto $crypto): Response
+    {
+        $form = $this->createForm(CommentFormType::class);
+
+        return $this->render('crypto/_comment_form.html.twig', [
+            'crypto' => $crypto,
+            'form' => $form->createView(),
+        ]);
+    }
+
+     /**
      * @isGranted("ROLE_USER")
      * @Route("stage/{nom}/delete", name="delete_crypto")
      * @param Request $request

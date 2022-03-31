@@ -69,7 +69,11 @@ class Crypto
     private $fans;
 
     /**
-     * @var \DateTime
+     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="cryptocurrency")
+     */
+    private $comments;
+
+     /* @var \DateTime
      * @ORM\Column(type="datetime")
      */
     private $dateMaj;
@@ -84,6 +88,7 @@ class Crypto
     {
         $this->fans = new ArrayCollection();
         $this->date = new \DateTime();
+        $this->comments = new ArrayCollection();
         $this->dateMaj = new \DateTime();
     }
 
@@ -217,6 +222,22 @@ class Crypto
         return (string) $this->getCreateur();
     }
 
+    /**
+     * @return Collection<int, Comment>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setCryptocurrency($this);
+        }
+        return $this;
+    }
     public function getDateMaj(): ?\DateTimeInterface
     {
         return $this->dateMaj;
@@ -229,6 +250,15 @@ class Crypto
         return $this;
     }
 
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getCryptocurrency() === $this) {
+                $comment->setCryptocurrency(null);
+            }
+        }
+    }
     public function getQuantiteMax(): ?int
     {
         return $this->quantiteMax;
