@@ -2,26 +2,6 @@
 <p>
 </p>
 
-> Application qui permet l'échange entre des personnes intéressés par les cryptomonnaies et le métavers.
-
-### ✨ [Demo](À définir)
-
-## Installation
-
-```sh
-À définir
-```
-
-## Utilisation
-
-```sh
-À définir
-```
-
-<h1 align="center">Bienvenu-e à Cryptobook 👋</h1>
-<p>
-</p>
-
 > Application qui permet l'échange entre des personnes intéressées par les cryptomonnaies et le métavers.
 
 ## Installation
@@ -39,31 +19,31 @@ Afin de pouvoir utiliser notre application, vous allez avoir besoin de quelques 
 
 4- Symfony, le framework MVC libre, écrit en PHP.
     4.1- Pour installer Symfony, il vous faudra aussi installer gofish, le gestionnaire de packages de systèmes multiplateformes en tapant les commandes suivantes après avoir ouvert votre terminal Windows Power Shell en tant qu'administrateur :
-    ```bash
+```bash
         - Set-ExecutionPolicy Bypass -Scope Process -Force
           iex ((New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/fishworks/gofish/main/scripts/install.ps1'))
         - gofish install gofish
         - gofish upgrade gofish
         - gofish rig add https://github.com/symfony-cli/fish-food
         - gofish install github.com/symfony-cli/fish-food/symfony-cli
-    ```
+```
 
 5- Ouvrez le dossier, cryptobook-master, de notre application avec votre IDE préféré, et utilisez son terminal pour vous placer dedans.
 
 6- Dans le terminal de votre IDE, tapez les commandes suivantes : 
-    ```bash
+```bash
     - composer install
     - composer require symfony/polyfill-intl-messageformatter
-    ```
+```
 
 7- Grâce à votre IDE, connectez-vous à votre base de donnée MySQL (si vous utilisez XAMP) dans le fichier ".env" en rajoutant dans la partie ###> doctrine/doctrine-bundle ### le code  suivant avec vos informations :
     - DATABASE_URL="mysql://db_user:db_password@127.0.0.1:3306/db_name?serverVersion=5.7"
 
 8- Dans le terminal de votre IDE, tapez les commandes suivantes : 
-    ```bash
+```bash
     - php bin/console doctrine:schema:update --force
     - php bin/console doctrine:fixtures:load
-    ```
+```
 
 Vous pouvez maintenant lancer le serveur web, toujours à travers le terminal, à l'aide de la commande : php bin/console doctrine:fixtures:load
 
